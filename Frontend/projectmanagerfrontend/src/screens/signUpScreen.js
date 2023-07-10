@@ -80,7 +80,12 @@ const SignUpScreen = () => {
               <label htmlFor="lastName" className="text-gray-700">Last Name</label>
               <div className="flex items-center">
                 <FaUser className="text-gray-500 mr-2" />
-                <input type="text" id="lastName" className="w-full border rounded py-2 px-4" />
+                <input 
+                type="text"
+                 id="last_name" 
+                 value = {last_name}
+                 onChange={(e) => setLastName(e.target.value)}
+                className="w-full border rounded py-2 px-4" />
               </div>
             </div>
           </div>
@@ -88,12 +93,19 @@ const SignUpScreen = () => {
             <label htmlFor="email" className="text-gray-700">Email</label>
             <div className="flex items-center">
               <FaEnvelope className="text-gray-500 mr-2" />
-              <input type="email" id="email" className="w-full border rounded py-2 px-4" />
+              <input type="email" 
+              id="email" 
+              value = {email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="w-full border rounded py-2 px-4" />
             </div>
           </div>
           <div className="mb-4">
             <label htmlFor="gender" className="text-gray-700">Gender</label>
-            <select id="gender" className="w-full border rounded py-2 px-4">
+            <select id="gender" 
+            value={gender}
+            onChange={(e) => setGender(e.target.value)}
+            className="w-full border rounded py-2 px-4">
               <option value="">Select Gender</option>
               <option value="male">Male</option>
               <option value="female">Female</option>
@@ -103,15 +115,25 @@ const SignUpScreen = () => {
           <div className="mb-6">
             <label htmlFor="phone" className="text-gray-700">Phone Number</label>
             <div className="flex items-center">
-              <FaPhoneAlt className="text-gray-500 mr-2" />
-              <input type="tel" id="phone" className="w-full border rounded py-2 px-4" />
+              <FaPhoneAlt className="text-yellow-500 mr-2" />
+              <input 
+              type="tel" 
+              id="phone" 
+              value={phone_number}
+              onChange={(e) =>setPhoneNumber(e.target.value)}
+              className="w-full border rounded py-2 px-4" />
             </div>
           </div>
           <div className="mb-4">
             <label htmlFor="password" className="text-gray-700">Password</label>
             <div className="flex items-center">
-              <FaLock className="text-gray-500 mr-2" />
-              <input type="password" id="password" className="w-full border rounded py-2 px-4" />
+              <FaLock className="text-yellow-500 mr-2" />
+              <input  
+              type="password" 
+              id="password" 
+              value={password}
+              onChange={(e) => setPassword(e.target.value) }
+              className="w-full border rounded py-2 px-4" />
             </div>
           </div>
           
@@ -119,14 +141,21 @@ const SignUpScreen = () => {
             <label htmlFor="confirmPassword" className="text-gray-700">Confirm Password</label>
             <div className="flex items-center">
               <FaLock className="text-gray-500 mr-2" />
-              <input type="password" id="confirmPassword" className="w-full border rounded py-2 px-4" />
+              <input type="password"
+               id="confirmPassword" 
+               value={confirmPassword}
+               onChange={(e) => setConfirmPassword(e.target.value) }
+               className="w-full border rounded py-2 px-4" />
             </div>
           </div>
           <div className="mb-4">
             <label htmlFor="dob" className="text-gray-700">Date of Birth</label>
             <div className="flex items-center">
               <FaCalendar className="text-gray-500 mr-2" />
-              <input type="date" id="dob" className="w-full border rounded py-2 px-4" />
+              <input type="date" id="dob" 
+                value={date_of_birth}
+                onChange={(e) => setDateOfBirth(e.target.value) }
+              className="w-full border rounded py-2 px-4" />
             </div>
           </div>
          
