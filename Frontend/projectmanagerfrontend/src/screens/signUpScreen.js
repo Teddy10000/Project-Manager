@@ -1,6 +1,6 @@
 import React,{useState} from 'react'
-import { FaUser, FaEnvelope, FaLock, FaCalendar, FaPhone } from 'react-icons/fa';
-export const signUpScreen = () => {
+import { FaUser, FaEnvelope, FaLock, FaCalendar, FaPhoneAlt } from 'react-icons/fa';
+const SignUpScreen = () => {
     const [first_name, setFirstName] = useState('');
     const [last_name, setLastName] = useState('');
     const [email, setEmail] = useState('');
@@ -92,12 +92,29 @@ export const signUpScreen = () => {
             </div>
           </div>
           <div className="mb-4">
+            <label htmlFor="gender" className="text-gray-700">Gender</label>
+            <select id="gender" className="w-full border rounded py-2 px-4">
+              <option value="">Select Gender</option>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          <div className="mb-6">
+            <label htmlFor="phone" className="text-gray-700">Phone Number</label>
+            <div className="flex items-center">
+              <FaPhoneAlt className="text-gray-500 mr-2" />
+              <input type="tel" id="phone" className="w-full border rounded py-2 px-4" />
+            </div>
+          </div>
+          <div className="mb-4">
             <label htmlFor="password" className="text-gray-700">Password</label>
             <div className="flex items-center">
               <FaLock className="text-gray-500 mr-2" />
               <input type="password" id="password" className="w-full border rounded py-2 px-4" />
             </div>
           </div>
+          
           <div className="mb-4">
             <label htmlFor="confirmPassword" className="text-gray-700">Confirm Password</label>
             <div className="flex items-center">
@@ -112,22 +129,7 @@ export const signUpScreen = () => {
               <input type="date" id="dob" className="w-full border rounded py-2 px-4" />
             </div>
           </div>
-          <div className="mb-4">
-            <label htmlFor="gender" className="text-gray-700">Gender</label>
-            <select id="gender" className="w-full border rounded py-2 px-4">
-              <option value="">Select Gender</option>
-              <option value="male">Male</option>
-              <option value="female">Female</option>
-              <option value="other">Other</option>
-            </select>
-          </div>
-          <div className="mb-6">
-            <label htmlFor="phone" className="text-gray-700">Phone Number</label>
-            <div className="flex items-center">
-              <FaPhone className="text-gray-500 mr-2" />
-              <input type="tel" id="phone" className="w-full border rounded py-2 px-4" />
-            </div>
-          </div>
+         
           <button type="submit" className="bg-gold text-white py-2 px-4 rounded w-full">
             Sign Up
           </button>
@@ -137,5 +139,6 @@ export const signUpScreen = () => {
   );
 }; 
 
+export default SignUpScreen;
 
 
