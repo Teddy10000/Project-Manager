@@ -1,4 +1,5 @@
 import React,{useState} from 'react'
+import axios from 'axios';
 import { FaUser, FaEnvelope, FaLock, FaCalendar, FaPhoneAlt } from 'react-icons/fa';
 const SignUpScreen = () => {
     const [first_name, setFirstName] = useState('');
@@ -52,14 +53,18 @@ const SignUpScreen = () => {
     
         if (isValid) {
           // Process form submission or API call
-          // ...
+
+        
+
+          console.log(last_name)
+      
         }
       };
 
     return (
     <div className="flex items-center justify-center min-h-screen bg-black">
       <div className="bg-white p-8 rounded shadow-md">
-        <h2 className="text-3xl font-bold text-center mb-4">Sign Up</h2>
+        <h2 className="text-3xl text-yellow-600 font-bold text-center mb-4">Sign Up</h2>
         <form onSubmit={handleSubmit}>
           <div className="flex mb-4">
             <div className="w-1/2 mr-2">
@@ -67,7 +72,7 @@ const SignUpScreen = () => {
                 First Name
                 </label>
               <div className="flex items-center">
-                <FaUser className="text-gray-500 mr-2" />
+                <FaUser className="text-yellow-500 mr-2" />
                 <input 
                 type="text" 
                 id="first_name" 
@@ -79,7 +84,7 @@ const SignUpScreen = () => {
             <div className="w-1/2 ml-2">
               <label htmlFor="lastName" className="text-gray-700">Last Name</label>
               <div className="flex items-center">
-                <FaUser className="text-gray-500 mr-2" />
+                <FaUser className="text-yellow-500 mr-2" />
                 <input 
                 type="text"
                  id="last_name" 
@@ -92,7 +97,7 @@ const SignUpScreen = () => {
           <div className="mb-4">
             <label htmlFor="email" className="text-gray-700">Email</label>
             <div className="flex items-center">
-              <FaEnvelope className="text-gray-500 mr-2" />
+              <FaEnvelope className="text-yellow-500 mr-2" />
               <input type="email" 
               id="email" 
               value = {email}
@@ -140,7 +145,7 @@ const SignUpScreen = () => {
           <div className="mb-4">
             <label htmlFor="confirmPassword" className="text-gray-700">Confirm Password</label>
             <div className="flex items-center">
-              <FaLock className="text-gray-500 mr-2" />
+              <FaLock className="text-yellow-500 mr-2" />
               <input type="password"
                id="confirmPassword" 
                value={confirmPassword}
@@ -151,7 +156,7 @@ const SignUpScreen = () => {
           <div className="mb-4">
             <label htmlFor="dob" className="text-gray-700">Date of Birth</label>
             <div className="flex items-center">
-              <FaCalendar className="text-gray-500 mr-2" />
+              <FaCalendar className="text-yellow-500 mr-2" />
               <input type="date" id="dob" 
                 value={date_of_birth}
                 onChange={(e) => setDateOfBirth(e.target.value) }
@@ -159,7 +164,7 @@ const SignUpScreen = () => {
             </div>
           </div>
          
-          <button type="submit" className="bg-gold text-white py-2 px-4 rounded w-full">
+          <button type="submit" className="bg-yellow-500 text-white py-2 px-4 rounded w-full">
             Sign Up
           </button>
         </form>
