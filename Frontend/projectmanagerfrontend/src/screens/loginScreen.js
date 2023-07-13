@@ -139,6 +139,7 @@ const handleSubmit = (e) => {
             Log In
           </button>
         </form>
+        
         <Modal showModal={showModal} closeModal={closeModal} modalMessage={modalMessage} success={success} />
       </div>
     </div>
