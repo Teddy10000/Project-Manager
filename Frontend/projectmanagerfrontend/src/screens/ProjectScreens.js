@@ -1,10 +1,14 @@
-import React from 'react'
+import React ,{useEffect,useState} from 'react'
 import ProjectScreen from '../constants/Project-list'
 import NewDashboard from '../constants/NewDashboard';
 import ProjectDetails from '../constants/Project-detail';
 import TaskSection from '../constants/Tasks/TasksSection';
+import { PROJECTS_URL } from '../utilities/constant';
+import api from '../apis/api-auth';
 
-const ProjectPage = () => { 
+const ProjectPage = () => {  
+ const [Project, setProjects] = useState([])
+
     const projects = [
         {
           id: '1',
@@ -59,16 +63,27 @@ const ProjectPage = () => {
         ]
       };
       
-      const userRole = 'manager'; // Set the user role based on your logic
+      const userRole = 'member'; // Set the user role based on your logic
       const userId = '1'; // Set the user ID based on your logic
+    
+      useEffect(() => {
+        const fetchProjects = async () => {
+            try {
+                const response = await api.get(`${PROJECTS_URL}`);
+            setProjects(response.data); 
+            console.log(response.data);
+          } catch (error) {
+            console.error('Error fetching projects:', error);
+          }
+        };
       
+        fetchProjects();
+      }, []);
 
   return (
     <div>
-        <NewDashboard projects={projects} userId={"1"}/>
-        <h1>Parent Component</h1>
-    
-     <TaskSection project={project} userRole={userRole} userId={userId} />
+        <NewDashboard projects={Project} userId={"1"}/>
+      
     
     </div>
   )
