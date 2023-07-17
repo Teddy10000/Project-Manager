@@ -2,6 +2,7 @@ import React from 'react';
 import ProjectSection from './ProjectSection';
 import ProjectSummary from './ProjectSummary';
 import { Link } from 'react-router-dom';
+import { IoIosAdd } from "react-icons/io";
 
 const NewDashboard = ({ projects, userId }) => {
   
@@ -18,7 +19,8 @@ const NewDashboard = ({ projects, userId }) => {
                 <ProjectSummary project={project} />
               </Link>
             ))}
-          </div>
+          </div> 
+          <button className="mt-4 text-lg border-2 rounded-lg w-40 h-8 bg-blue-600 hover:bg-blue-700 flex-row flex"><IoIosAdd/>Create Project</button>
         </div>
       )}
       <h2 className="text-2xl font-semibold mb-2">Projects I'm a Team Member Of</h2>

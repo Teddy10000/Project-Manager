@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 
 const ProjectCreationForm = () => {
   const [projectName, setProjectName] = useState('');
-  const [projectDescription, setProjectDescription] = useState('');
-  const [projectTimeline, setProjectTimeline] = useState('');
+  const [projectStartDate, setProjectStartDate] = useState('');
+  const [projectEndDate, setProjectEndDate] = useState('');
+  const [projectProgress, setProjectTimeline] = useState('');
   const [showAddTeamMembersForm, setShowAddTeamMembersForm] = useState(false);
   const [selectedProject, setSelectedProject] = useState('');
   const [selectedTeamMembers, setSelectedTeamMembers] = useState([]);
@@ -11,7 +12,8 @@ const ProjectCreationForm = () => {
   const handleProjectCreate = (e) => {
     e.preventDefault();
     // Handle project creation logic, such as sending data to the backend or performing validation
-    // Reset form fields
+    // Reset form fields 
+
     setProjectName('');
     setProjectDescription('');
     setProjectTimeline('');
@@ -25,6 +27,8 @@ const ProjectCreationForm = () => {
     e.preventDefault();
     // Handle adding team members logic, such as sending data to the backend or performing validation
     // Reset form fields
+
+
     setSelectedProject('');
     setSelectedTeamMembers([]);
     setShowAddTeamMembersForm(false);

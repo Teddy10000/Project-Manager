@@ -64,12 +64,7 @@ const ProjectDetails = ({ project, userRole }) => {
 
       <h2>Tasks:</h2>
       <ul>
-        {tasks.map((task) => (
-          <li key={task.id}>
-            {task.title}
-            {/* Additional task details */}
-          </li>
-        ))}
+       
       </ul>
 
       {userRole === 'manager' && (

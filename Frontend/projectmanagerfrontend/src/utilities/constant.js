@@ -6,3 +6,4 @@ export const REFRESH_TOKEN_URL = "http://localhost:8000/account/api/auth/token/r
 export const PROJECTS_URL = "http://localhost:8000/manager/projects/"
 
 export const PROJECT_DETAILS_URL = "http://localhost:8000/manager/projects/"
+export const USERS_LIST_URL = "http://localhost:8000/account/users/"
