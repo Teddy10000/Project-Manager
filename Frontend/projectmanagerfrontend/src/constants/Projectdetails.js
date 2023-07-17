@@ -53,7 +53,7 @@ const ProjectDetails = ({ project }) => {
        
       // Send POST request to the backend team create endpoint with the project ID in the URL
     const response = await api.post(`${PROJECTS_URL}${projectId}/team/create/`, newTeamMember);
-      if (response.statusCode === 200){
+      if (response.data){
         setShowModal(true)
         setShowSuccesMessage(true);
         setModalMessage('Team Member added successfully');
@@ -125,8 +125,8 @@ const ProjectDetails = ({ project }) => {
       <h2 className="text-xl font-semibold mb-2">Team Members:</h2>
       {projectdetails && projectdetails.team_members.length > 0 ? (
   projectdetails.team_members.map((member) => (
-    <div key={member.id} className="text-gray-700">
-      <p>Name: {member.user.first_name} {member.user.last_name}</p>
+    <div key={member.id} className="text-gray-700 border p-4 rounded-lg shadow-md bg-white hover:bg-gray-100 transition duration-300">
+      <p className="mt-4  text-xl font-semibold"> {member.user.first_name} {member.user.last_name}</p>
    
       {/* Add any other properties you want to display */}
     </div>
