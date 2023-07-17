@@ -140,7 +140,7 @@ class ProjectListSerializer(serializers.ModelSerializer):
     """
     class Meta:
         model = Project
-        fields = ['id', 'name']  # Include the fields you want to display in the project list
+        fields = ['id', 'name','progress','status']  # Include the fields you want to display in the project list
 
 
 class ProjectDetailSerializer(serializers.ModelSerializer):
@@ -153,7 +153,7 @@ class ProjectDetailSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Project
-        fields = ['id', 'name','start_date','end_date', 'project_manager','team_members']
+        fields = ['id', 'name','start_date','end_date', 'status','progress','project_manager','team_members']
 
     def get_team_members(self, obj):
         # Retrieve the team members of the project

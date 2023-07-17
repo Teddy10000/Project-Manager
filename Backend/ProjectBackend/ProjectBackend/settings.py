@@ -125,7 +125,7 @@ JWT_AUTH = {
     'JWT_SECRET_KEY': 'your-secret-key',  # Replace with your own secret key
     'JWT_ALGORITHM': 'HS256',
     'JWT_ALLOW_REFRESH': True,
-    'JWT_EXPIRATION_DELTA': datetime.timedelta(days=1),  # Set token expiration time
+    'JWT_EXPIRATION_DELTA': datetime.timedelta(minutes=10),  # Set token expiration time
 }
 #set DJ-REST-AUTH TO USE JWT TOKENS
 DJ_REST_AUTH = {
@@ -136,7 +136,7 @@ DJ_JWT_AUTH = {
     'JWT_SECRET_KEY': 'your-secret-key',
     'JWT_ALGORITHM': 'HS256',
     'JWT_ALLOW_REFRESH': True,
-    'JWT_EXPIRATION_DELTA': timedelta(minutes=20),
+    'JWT_EXPIRATION_DELTA': timedelta(minutes=40),
     'JWT_REFRESH_EXPIRATION_DELTA': timedelta(minutes=30),
     'JWT_ROTATE_REFRESH_TOKENS': False,
     'JWT_BLACKLIST_AFTER_ROTATION': True,

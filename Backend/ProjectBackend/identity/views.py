@@ -3,7 +3,7 @@ from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework.views import APIView 
 from rest_framework.response import Response
 from dj_rest_auth.registration.views import RegisterView
-from .serializers import CustomRegisterSerializer
+from .serializers import CustomRegisterSerializer, UserListSerializer
 # Create your views here.
 from allauth.account import app_settings as allauth_account_settings
 from allauth.account.adapter import get_adapter
@@ -32,8 +32,8 @@ from dj_rest_auth.registration.serializers import (
 )
 from dj_rest_auth.utils import jwt_encode
 from dj_rest_auth.views import LoginView
-
-from .serializers import CustomLoginSerializer
+from .models import User
+from .serializers import CustomLoginSerializer , UserListSerializer
 from allauth.socialaccount.providers.google.views import GoogleOAuth2Adapter
 from allauth.socialaccount.providers.oauth2.client import OAuth2Client
 from dj_rest_auth.registration.views import SocialLoginView
@@ -195,4 +195,11 @@ class GoogleLoginCallback(SocialLoginView):
             'email': user.email,
             # Include any other relevant user data
         }
-        return Response(response_data, status=status.HTTP_200_OK)
+        return Response(response_data, status=status.HTTP_200_OK) 
+    
+    
+
+
+class UserListView(generics.ListAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserListSerializer

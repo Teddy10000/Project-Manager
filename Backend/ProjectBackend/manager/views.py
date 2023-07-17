@@ -101,7 +101,7 @@ class ProjectTeamCreateView(generics.CreateAPIView):
             raise serializers.ValidationError("User is already a part of the project's team members.")
        
         if project.project_manager == user:
-            raise serializers.ValidationError("You can't assign task to the Project Manager.")
+            raise serializers.ValidationError("Project Manager is already a team Member.")
                 
         # Save the team member instance first
         team_member = serializer.save()
