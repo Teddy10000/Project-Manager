@@ -21,7 +21,13 @@ class ProjectCreateView(generics.CreateAPIView):
     permission_classes = [permissions.IsAuthenticated]
 
     def perform_create(self, serializer):
-        # Set the project manager to the current user
+        # Set the project manager to the current user 
+        start_date = serializer.validated_data.get('start_date')
+        end_date = serializer.validated_data.get('end_date')
+
+        if start_date >= end_date:
+            raise serializers.ValidationError("Start date should be less than the end date.")
+
         serializer.save(project_manager=self.request.user)
 
 
