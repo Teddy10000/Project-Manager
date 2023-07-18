@@ -1,5 +1,6 @@
 import React ,{useEffect,useState} from 'react'
 import ProjectScreen from '../constants/Project-list'
+import { useNavigate } from 'react-router-dom';
 import NewDashboard from '../constants/NewDashboard';
 import ProjectDetails from '../constants/Project-detail';
 import TaskSection from '../constants/Tasks/TasksSection';
@@ -8,6 +9,7 @@ import api from '../apis/api-auth';
 
 const ProjectPage = () => {  
  const [Project, setProjects] = useState([])
+ const navigate = useNavigate();
 
     const projects = [
         {

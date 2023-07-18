@@ -66,11 +66,15 @@ const [modalMessage,setModalMessage] = useState("")
   }; 
 
   const handleClose = () =>{
-      showProjectForms(false)
+      setShowProjectForms(false)
   } 
 
   const closeModal = () =>{
     setShowModal(false)
+  } 
+
+  const handleOpenCreateProjectForms = () =>{
+    setShowProjectForms(true);
   }
   
   return (
@@ -90,8 +94,12 @@ const [modalMessage,setModalMessage] = useState("")
           
         </div>
       )}
-      <button className="mt-4 text-lg border-2 rounded-lg w-40 h-8 bg-blue-600 hover:bg-blue-700 flex-row flex"><IoIosAdd/>Create Project</button>
-      {showProjectForms && <ProjectCreationForm />}  {showProjectForms && (
+      <button
+      onClick={handleOpenCreateProjectForms} 
+      className="mt-4 text-lg border-2 rounded-lg w-40 h-8 bg-blue-600 hover:bg-blue-700 flex-row flex">
+        <IoIosAdd/>Create Project
+        </button>
+      {showProjectForms && (
         <div className="fixed inset-0 flex justify-center items-center bg-opacity-50 bg-gray-500 z-50">
           <div className="bg-white p-8 rounded-md shadow-md">
             <ProjectCreationForm handleProjectCreate={handleProjectCreate}  handleClose={handleClose} />

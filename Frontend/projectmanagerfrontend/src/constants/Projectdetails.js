@@ -126,7 +126,7 @@ const ProjectDetails = ({ project }) => {
       {projectdetails && projectdetails.team_members.length > 0 ? (
   projectdetails.team_members.map((member) => (
     <div key={member.id} className="text-gray-700 border p-4 rounded-lg shadow-md bg-white hover:bg-gray-100 transition duration-300">
-      <p className="mt-4  text-xl font-semibold"> {member.user.first_name} {member.user.last_name}</p>
+      <p className="mt-2  text-xl font-semibold"> {member.user.first_name} {member.user.last_name}</p>
    
       {/* Add any other properties you want to display */}
     </div>
