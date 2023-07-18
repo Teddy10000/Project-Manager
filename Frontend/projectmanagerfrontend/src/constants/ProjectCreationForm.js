@@ -1,22 +1,33 @@
 import React, { useState } from 'react';
 
-const ProjectCreationForm = () => {
+const ProjectCreationForm = ({handleProjectCreate, handleClose}) => {
+ 
+ 
   const [projectName, setProjectName] = useState('');
   const [projectStartDate, setProjectStartDate] = useState('');
   const [projectEndDate, setProjectEndDate] = useState('');
-  const [projectProgress, setProjectTimeline] = useState('');
   const [showAddTeamMembersForm, setShowAddTeamMembersForm] = useState(false);
   const [selectedProject, setSelectedProject] = useState('');
   const [selectedTeamMembers, setSelectedTeamMembers] = useState([]);
 
-  const handleProjectCreate = (e) => {
+  
+  
+  const handleProjectSubmit = (e) => {
     e.preventDefault();
     // Handle project creation logic, such as sending data to the backend or performing validation
     // Reset form fields 
 
+   const newProject = {
+    name: projectName,
+    start_date: projectStartDate,
+    end_date: projectEndDate,
+   }
+     
+    
+   handleProjectCreate(newProject)
     setProjectName('');
-    setProjectDescription('');
-    setProjectTimeline('');
+    setProjectStartDate('');
+    setProjectEndDate('');
   };
 
   const handleAddTeamMembers = () => {
@@ -32,11 +43,13 @@ const ProjectCreationForm = () => {
     setSelectedProject('');
     setSelectedTeamMembers([]);
     setShowAddTeamMembersForm(false);
-  };
+  }; 
+
+  
 
   return (
     <div>
-      <form onSubmit={handleProjectCreate}>
+      <form onSubmit={handleProjectSubmit}>
         <h2>Create New Project</h2>
         <div>
           <label htmlFor="projectName">Project Name</label>
@@ -48,22 +61,13 @@ const ProjectCreationForm = () => {
             required
           />
         </div>
-        <div>
-          <label htmlFor="projectDescription">Project Description</label>
-          <textarea
-            id="projectDescription"
-            value={projectDescription}
-            onChange={(e) => setProjectDescription(e.target.value)}
-            required
-          />
-        </div>
-        <div>
-          <label htmlFor="projectTimeline">Project Timeline</label>
+          <div>
+          <label htmlFor="projectStartDate">Project Start Date</label>
           <input
-            type="text"
-            id="projectTimeline"
-            value={projectTimeline}
-            onChange={(e) => setProjectTimeline(e.target.value)}
+            id="projectStartDate"
+            type="date"
+            value={projectStartDate}
+            onChange={(e) => setProjectStartDate(e.target.value)}
             required
           />
         </div>
@@ -72,15 +76,18 @@ const ProjectCreationForm = () => {
           className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded"
         >
           Create Project
-        </button>
+        </button> 
         <button
-          type="button"
-          className="bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded ml-2"
-          onClick={handleAddTeamMembers}
+          type="submit"
+          onclick={handleClose()}
+          className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded"
         >
-          Add Team Members
-        </button>
-      </form>
+          Close Project
+        </button> 
+        
+        </form>
+      
+      
 
       {showAddTeamMembersForm && (
         <form onSubmit={handleAddTeamMembersSubmit} className="mt-4">

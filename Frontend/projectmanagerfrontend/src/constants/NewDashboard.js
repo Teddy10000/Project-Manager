@@ -1,10 +1,77 @@
-import React from 'react';
+import React,{useState,useEffect} from 'react';
 import ProjectSection from './ProjectSection';
 import ProjectSummary from './ProjectSummary';
 import { Link } from 'react-router-dom';
-import { IoIosAdd } from "react-icons/io";
+import { IoIosAdd } from "react-icons/io";  
+import ProjectCreationForm from './ProjectCreationForm';
+import { PROJECTS_URL } from '../utilities/constant';
+import api from '../apis/api-auth';
+import Modal from './modal';
+
+
+
 
 const NewDashboard = ({ projects, userId }) => {
+
+  const [showProjectForms,setShowProjectForms] = useState(false);
+const [showModal,setShowModal] = useState(false)
+const [success,setProjectSuccess] = useState(false)
+const [modalMessage,setModalMessage] = useState("")
+
+  const handleProjectCreate = async(newProject) => {
+   
+    // Handle project creation logic, such as sending data to the backend or performing validation
+    // Reset form fields 
+
+    try{
+     
+       
+      // Send POST request to the backend project create
+    const response = await api.post(`${PROJECTS_URL}create/`, newProject);
+      if (response.data){
+        setShowModal(true)
+      
+        setModalMessage('Project Created successfully');
+        setProjectSuccess(true)
+      };
+   
+    }
+   catch (error) {
+    if (error.response) {
+      const errorData = error.response.data;
+      let errorts = [];
+      for (let key in errorData) {
+        if (Array.isArray(errorData[key])) {
+          errorts.push(...errorData[key].map((errorMessage) => {
+            return `${key.charAt(0).toUpperCase() + key.slice(1).replace('_', ' ')}: ${errorMessage}\t`;
+          }));
+        } else {
+          errorts.push(`${key.charAt(0).toUpperCase() + key.slice(1).replace('_', ' ')}: ${errorData[key]}\t`);
+        }
+      }
+      setModalMessage(errorts)
+      setShowModal(true)
+      setProjectSuccess(false)
+    } else {
+      
+      setModalMessage(["Something went wrong. Please try again later."]);
+      setShowModal(true)
+      setProjectSuccess(false)
+    }
+    
+    
+    
+    }
+     
+  }; 
+
+  const handleClose = () =>{
+      showProjectForms(false)
+  } 
+
+  const closeModal = () =>{
+    setShowModal(false)
+  }
   
   return (
     <div className="p-4 container mx-auto">
@@ -20,9 +87,20 @@ const NewDashboard = ({ projects, userId }) => {
               </Link>
             ))}
           </div> 
-          <button className="mt-4 text-lg border-2 rounded-lg w-40 h-8 bg-blue-600 hover:bg-blue-700 flex-row flex"><IoIosAdd/>Create Project</button>
+          
         </div>
       )}
+      <button className="mt-4 text-lg border-2 rounded-lg w-40 h-8 bg-blue-600 hover:bg-blue-700 flex-row flex"><IoIosAdd/>Create Project</button>
+      {showProjectForms && <ProjectCreationForm />}  {showProjectForms && (
+        <div className="fixed inset-0 flex justify-center items-center bg-opacity-50 bg-gray-500 z-50">
+          <div className="bg-white p-8 rounded-md shadow-md">
+            <ProjectCreationForm handleProjectCreate={handleProjectCreate}  handleClose={handleClose} />
+          </div>
+          <Modal showModal={showModal} closeModal={closeModal} modalMessage={modalMessage} success={success} />
+        </div> 
+      
+      )}
+
       <h2 className="text-2xl font-semibold mb-2">Projects I'm a Team Member Of</h2>
       {/*** <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
         {teamProjects.map((project) => (

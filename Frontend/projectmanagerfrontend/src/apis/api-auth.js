@@ -1,11 +1,13 @@
 import { REFRESH_TOKEN_URL } from "../utilities/constant";
 import axios from 'axios';
 import { isTokenExpired } from "./jwt-decode";
-
+import { useParams, useNavigate, useLocation } from "react-router-dom";
 
 const api = axios.create({ maxRedirects: 5 });
 
 api.interceptors.request.use(
+
+
     async(config) => {
         const accessToken = localStorage.getItem('access_token');
         const refreshToken = localStorage.getItem('refresh_token');
@@ -26,7 +28,8 @@ api.interceptors.request.use(
                     config.headers.Authorization = `Bearer ${newAccessToken}`;
                 } catch (error) {
                     // Handle the error if token refresh fails
-                    console.error('Token refresh failed:', error);
+                    const navigate = useNavigate()
+                    navigate('/login')
                 }
             } else {
                 // Set the authorization header with the existing access token
