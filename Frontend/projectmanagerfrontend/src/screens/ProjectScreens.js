@@ -73,6 +73,8 @@ const ProjectPage = () => {
             setProjects(response.data); 
             console.log(response.data);
           } catch (error) {
+            if (error.message === 'Token refresh failed') {
+              navigate('/login');}
             console.error('Error fetching projects:', error);
           }
         };

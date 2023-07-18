@@ -28,8 +28,7 @@ api.interceptors.request.use(
                     config.headers.Authorization = `Bearer ${newAccessToken}`;
                 } catch (error) {
                     // Handle the error if token refresh fails
-                    const navigate = useNavigate()
-                    navigate('/login')
+                    throw new Error('Token refresh failed');
                 }
             } else {
                 // Set the authorization header with the existing access token
