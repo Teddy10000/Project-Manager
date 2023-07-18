@@ -188,7 +188,7 @@ class ProjectCreateSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Project
-        fields = '__all__'  # Include all fields for the detailed view of the project
+        fields = ['name','start_date','end_date']  # Include all fields for the detailed view of the project
 
 
 
@@ -201,7 +201,7 @@ class ProjectUpdateSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Project
-        fields = ['name', 'end_date',]  # Include the fields that can be updated
+        fields = [ 'end_date','progress','status']  # Include the fields that can be updated
 
     def validate_end_date(self, value):
         """
