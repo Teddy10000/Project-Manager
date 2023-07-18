@@ -6,6 +6,7 @@ import LoginScreen from './screens/loginScreen';
 import Dashboard from './screens/Dashboard';
 import ProjectPage from './screens/ProjectScreens';
 import ProjectDetails from './constants/Projectdetails';
+import TaskManagerScreen from './constants/Tasks/Tasksection';
 function App() {
   return (
     <>
@@ -17,6 +18,7 @@ function App() {
           <Route exact path="/login" element={<LoginScreen/>}/>
           <Route exact path="/project" element={<ProjectPage/>}/>
           <Route exact path="/projects/:id" element={<ProjectDetails/>}/>
+          <Route exact path="/tasks" element={<TaskManagerScreen/>}/>
         </Routes>
       
       </BrowserRouter>
