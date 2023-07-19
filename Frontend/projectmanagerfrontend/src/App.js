@@ -7,13 +7,14 @@ import Dashboard from './screens/Dashboard';
 import ProjectPage from './screens/ProjectScreens';
 import ProjectDetails from './constants/Projectdetails';
 import TaskManagerScreen from './constants/Tasks/Tasksection';
+import Sidebar from './constants/Sidebar';
 function App() {
   return (
     <>
       <BrowserRouter>
-
+        <Sidebar/>
         <Routes>
-        <Route exact path="/" element={<Dashboard/>}/>
+        <Route exact path="/" element={""}/>
           <Route exact path="/signup" element={<SignUpScreen/>}/>
           <Route exact path="/login" element={<LoginScreen/>}/>
           <Route exact path="/project" element={<ProjectPage/>}/>

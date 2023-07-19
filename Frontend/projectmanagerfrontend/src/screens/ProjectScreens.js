@@ -85,7 +85,7 @@ const ProjectPage = () => {
       }, []);
 
   return (
-    <div>
+    <div >
         <NewDashboard projects={Project} userId={"1"}/>
       
     

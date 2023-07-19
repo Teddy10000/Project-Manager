@@ -78,13 +78,13 @@ const [modalMessage,setModalMessage] = useState("")
   }
   
   return (
-    <div className="p-4 container mx-auto">
-      <h1 className="text-3xl font-bold mb-4">My Projects</h1> 
+    <div className="p-4  bg-gray-900 md:ml-56">
+      <h1 className="text-3xl font-bold mb-4 text-white">My Projects</h1> 
 
       {projects.length > 0 && (
         <div className="mb-8">
-          <h2 className="text-2xl font-semibold mb-2">Projects Managed By Me</h2>
-          <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+          <h2 className="text-2xl font-semibold mb-2 text-gray-300">Projects Managed By Me</h2>
+          <div className="grid gap-4 grid-cols-1 sm:grid-cols-2  l">
             {projects.map((project) => (
               <Link to={`/projects/${project.id}`} key={project.id}>
                 <ProjectSummary project={project} />
