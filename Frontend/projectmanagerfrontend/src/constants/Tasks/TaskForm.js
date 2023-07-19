@@ -72,7 +72,7 @@ const TaskForm = ({ teamMembers, handleTaskSubmit,handleClose }) => {
           <option value="">Select Assignee</option>
           {teamMembers.map((member) => (
             <option key={member.id} value={member.id}>
-              {member.name}
+              {member.user.first_name + ' ' + member.user.last_name}
             </option>
           ))}
         </select>
