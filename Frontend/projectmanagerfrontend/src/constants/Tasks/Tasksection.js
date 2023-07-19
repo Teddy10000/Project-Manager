@@ -66,7 +66,8 @@ const TaskManagerScreen = () => {
       // Send POST request to the backend team create endpoint with the project ID in the URL
     const response = await api.post(`${PROJECTS_URL}${projectId}/tasks/create/`,newTask); 
     
-      if (response.data){
+      if (response.data){ 
+        setTasks((prevTasks) => [...prevTasks, response.data]);
         setShowModal(true)
         setShowSuccesMessage(true);
         setModalMessage('Task Assigned to member successfully');
@@ -116,7 +117,8 @@ const TaskManagerScreen = () => {
           setShowModal(true)
           setShowSuccesMessage(true);
           setModalMessage('Task Deleted Succesfully');
-          setAddedSuccess(true)
+          setAddedSuccess(true)  
+          setTasks((prevTasks) => prevTasks.filter((task) => task.id !== id));
         }; 
 
       } catch (error) {
