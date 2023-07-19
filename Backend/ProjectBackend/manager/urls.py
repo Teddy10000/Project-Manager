@@ -16,7 +16,7 @@ urlpatterns = [
     # For Team Members urls 
     path('projects/<int:pk>/team/create/', ProjectTeamCreateView.as_view(), name='project-team-create'),
     path('projects/<int:project_id>/team/add/', ProjectTeamAddView.as_view(), name='project-team-add'),
-     path('projects/<int:project_id>/team/remove/<int:team_member_id>/', ProjectTeamRemoveView.as_view(), name='project-team-remove'),
+     path('projects/<int:project_id>/team/remove/<int:team_member_id>/', ProjectTeamRemoveView.as_view(), name='project-team-remove'), 
     
     # For adding tasks to a project 
     path('projects/<int:project_id>/tasks/create/',TaskCreateView.as_view(), name='task-create'),

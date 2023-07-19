@@ -238,7 +238,7 @@ class TaskCreateSerializer(serializers.ModelSerializer):
     """
     class Meta:
         model = Task
-        fields = ['project', 'name', 'assigned_to', 'description', 'deadline']
+        fields = [ 'name', 'assigned_to', 'description', 'deadline']
         read_only_fields = ['status']
 
     def to_representation(self, instance):

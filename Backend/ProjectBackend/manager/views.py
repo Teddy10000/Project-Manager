@@ -189,7 +189,12 @@ class TaskCreateView(generics.CreateAPIView):
         # Add the project and request user to the serializer's context
         context = super().get_serializer_context()
         context['project'] = self.get_project()
-        return context
+        return context 
+    
+    def perform_create(self, serializer):
+        # Automatically set the project value as the project ID
+        project = self.get_project()
+        serializer.save(project=project)
     
     
 
