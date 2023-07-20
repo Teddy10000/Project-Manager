@@ -99,7 +99,8 @@ const ProjectDetails = ({ project }) => {
 
 
   return (
-    <div className="container md:ml-56 flex mx-auto p-4"> 
+    <div className=" md:ml-56 flex flex-col md:flex-row mx-auto p-4">
+    
     <div className="bg-white p-4 w-full md:w-1/2 text-center justify-center rounded-md shadow-md ">
       <h2 className="text-2xl font-semibold ">DETAILS ABOUT PROJECT</h2>
     <h1 className="text-3xl font-bold mb-4">{projectdetails.name}</h1>
@@ -158,7 +159,9 @@ const ProjectDetails = ({ project }) => {
       
       )}
   </div> 
-  <div className="bg-white p-4 w-full md:w-1/2 text-center justify-center rounded-md shadow-md"></div>
+  <div className="bg-white p-4 w-full md:w-1/2 text-center justify-center rounded-md shadow-md">
+    <h2 className="text-3xl text-black">PROJECT MILESTONE</h2>
+  </div>
   </div>
 );
 };
