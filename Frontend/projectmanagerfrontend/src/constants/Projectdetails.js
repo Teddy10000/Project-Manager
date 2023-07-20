@@ -99,8 +99,9 @@ const ProjectDetails = ({ project }) => {
 
 
   return (
-    <div className="container flex mx-auto p-4"> 
+    <div className="container md:ml-56 flex mx-auto p-4"> 
     <div className="bg-white p-4 w-full md:w-1/2 text-center justify-center rounded-md shadow-md ">
+      <h2 className="text-2xl font-semibold ">DETAILS ABOUT PROJECT</h2>
     <h1 className="text-3xl font-bold mb-4">{projectdetails.name}</h1>
     <p><span className="text-lg justify-center  ml-4 font-medium flex-row flex"><FaClock/>Start Date:</span> {projectdetails.start_date}</p>
     <p className='mt-4'><span className="text-lg justify-center ml-4 font-medium flex-row flex"><FaClock/>End  Date:</span> {projectdetails.end_date}</p>
@@ -156,7 +157,8 @@ const ProjectDetails = ({ project }) => {
 
       
       )}
-  </div>
+  </div> 
+  <div className="bg-white p-4 w-full md:w-1/2 text-center justify-center rounded-md shadow-md"></div>
   </div>
 );
 };

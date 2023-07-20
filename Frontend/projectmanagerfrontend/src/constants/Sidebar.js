@@ -53,15 +53,8 @@ const Sidebar = () => {
           Tasks
         </a>
       </li>
-      </Link>
-      <li className="mb-5 text-2xl">
-        <a href="#" className="flex items-center text-gray-300 hover:text-white">
-          <span className="mr-3">
-            <FaCalendarAlt className="text-white" />
-          </span>
-          Calendar
-        </a>
-      </li>
+      </Link> 
+      <Link>
       <li className="mb-5 text-2xl">
         <a href="#" className="flex items-center text-gray-300 hover:text-white">
           <span className="mr-3">
@@ -70,6 +63,39 @@ const Sidebar = () => {
           Team Members
         </a>
       </li>
+      </Link>
+      <Link>
+      <li className="mb-5 text-2xl">
+        <a href="#" className="flex items-center text-gray-300 hover:text-white">
+          <span className="mr-3">
+            <FaUsersCog className="text-white" />
+          </span>
+          Project Milestones
+        </a>
+      </li>
+      </Link>
+      <Link>
+      <li className="mb-5 text-2xl">
+        <a href="#" className="flex items-center text-gray-300 hover:text-white">
+          <span className="mr-3">
+            <FaUsersCog className="text-white" />
+          </span>
+          Task Issues
+        </a>
+      </li>
+      </Link>
+      <Link>
+      <li className="mb-5 text-2xl">
+        <a href="#" className="flex items-center text-gray-300 hover:text-white">
+          <span className="mr-3">
+            <FaCalendarAlt className="text-white" />
+          </span>
+          Calendar
+        </a>
+      </li>
+      </Link> 
+     
+      <Link>
       <li className="mb-5 text-2xl">
         <a href="#" className="flex items-center text-gray-300 hover:text-white">
           <span className="mr-3">
@@ -78,6 +104,8 @@ const Sidebar = () => {
           Reports
         </a>
       </li>
+      </Link>
+      <Link>
       <li className="mb-5 text-2xl">
         <a href="#" className="flex items-center text-gray-300 hover:text-white">
           <span className="mr-3">
@@ -86,6 +114,7 @@ const Sidebar = () => {
           Settings
         </a>
       </li>
+      </Link>
       {/* Add more menu items here */}
     </ul>
         </div>
@@ -94,7 +123,7 @@ const Sidebar = () => {
       {/* Navbar */}
       <div className="flex flex-col flex-1">
         {/* Navbar Header */}
-        <div className="flex items-center justify-between p-4 bg-gray-800">
+        <div className="flex  items-center justify-between p-4 bg-gray-800">
           <h1 className="text-2xl font-bold">Project Manager</h1>
           {/* Navbar Menu Icon */}
           <button className="md:hidden" onClick={toggleSidebar}>
