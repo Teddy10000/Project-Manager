@@ -169,7 +169,7 @@ const TaskManagerScreen = () => {
         </div>
       </div>
       {showTaskManager && (
-        <div className="fixed container mx-auto inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center"> 
+        <div className="fixed md:ml-56 container mx-auto inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center"> 
         <div className="absolute top-0 left-0 right-0 bottom-0 flex items-center justify-center">
           <div className="bg-white rounded-lg shadow-md p-6 overflow-y-auto max-h-full">
             <h2 className="text-2xl font-bold mb-4">Tasks for Selected Project</h2>
