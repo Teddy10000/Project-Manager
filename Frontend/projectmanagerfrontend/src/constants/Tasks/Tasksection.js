@@ -146,7 +146,18 @@ const TaskManagerScreen = () => {
           setAddedSuccess(false)
         }
       }
-    };
+    }; 
+
+    function formatDate(inputDate) {
+      const date = new Date(inputDate);
+      const year = date.getFullYear().toString().slice(-2);
+      const month = (date.getMonth() + 1).toString().padStart(2, '0');
+      const day = date.getDate().toString().padStart(2, '0');
+    
+      return `${month}/${day}/${year}`;
+    }
+
+   
   
 
   return (
@@ -175,40 +186,41 @@ const TaskManagerScreen = () => {
             <h2 className="text-2xl font-bold mb-4">Tasks for Selected Project</h2>
             <div className="flex flex-col">
             <h3 className="text-lg font-semibold mb-2">Tasks:</h3>
-            <div className="grid gap-4">
-  <div className="grid grid-cols-7 gap-2 bg-gray-200 p-4 font-semibold hidden md:grid">
-    <div className="text-center">Task Name</div>
-    <div className="text-center">Assignee</div>
-    <div className="text-center">Status</div>
-    <div className="text-center">Description</div>
-    <div className="text-center">Deadline</div>
-    <div className="text-center">Actions</div>
-  </div>
-  {tasks.map((task) => (
-    <div key={task.id} className="flex flex-wrap md:grid grid-cols-7 gap-2 bg-blue-100 rounded-lg shadow-md p-4">
-      <div className="w-full text-center md:w-auto md:col-span-1 md:hidden font-semibold">Task Name:</div>
-      <div className="w-full text-center md:w-auto md:col-span-1">{task.name}</div>
-      <div className="w-full md:w-auto md:col-span-1 text-center md:hidden font-semibold">Assignee:</div>
-      <div className="w-full md:w-auto text-center md:col-span-1">{task.assigned_to}</div>
-      <div className={`w-full md:w-auto md:col-span-1 text-center md:hidden font-semibold text-${task.status === 'complete' ? 'green' : 'gray-600'}`}>
-        Status:
-      </div>
-      <div className={`w-full md:w-auto text-center md:col-span-1`}>{task.status}</div>
-      <div className="w-full md:w-auto text-center md:col-span-2 md:hidden font-semibold">Description:</div>
-      <div className="w-full md:w-auto text-center md:col-span-1">{task.description}</div>
-      <div className="w-full md:w-auto text-center md:col-span-1 md:hidden font-semibold">Deadline:</div>
-      <div className="w-full md:w-auto text-center md:col-span-1">{task.deadline}</div>
-      <div className="w-full md:w-auto text-center md:col-span-1">
-        <button
-          onClick={() => handleDeleteTask(task.id)}
-          className="bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded"
-        >
-          Delete
-        </button>
-      </div>
-    </div>
-  ))}
-</div>
+                    <div className="grid gap-4">
+          <div className="grid grid-cols-7 gap-2 bg-gray-200 p-4 font-semibold hidden md:grid">
+            <div className="text-center">Task Name</div>
+            <div className="text-center">Assignee</div>
+            <div className="text-center">Status</div>
+            <div className="text-center">Description</div>
+            <div className="text-center">Deadline</div>
+            <div className="text-center">Actions</div>
+          </div>
+          {tasks.map((task) => (
+            
+            <div key={task.id} className="flex flex-wrap md:grid grid-cols-7 gap-2 bg-blue-100 rounded-lg shadow-md p-4">
+              <div className="w-full text-center md:w-auto md:col-span-1 md:hidden font-semibold">Task Name:</div>
+              <div className="w-full text-center md:w-auto md:col-span-1">{task.name}</div>
+              <div className="w-full md:w-auto md:col-span-1 text-center md:hidden font-semibold">Assignee:</div>
+              <div className="w-full md:w-auto text-center md:col-span-1">{task.assigned_to}</div>
+              <div className={`w-full md:w-auto md:col-span-1 text-center md:hidden font-semibold text-${task.status === 'complete' ? 'green' : 'gray-600'}`}>
+                Status:
+              </div>
+              <div className={`w-full md:w-auto text-center md:col-span-1`}>{task.status}</div>
+              <div className="w-full md:w-auto text-center md:col-span-2 md:hidden font-semibold">Description:</div>
+              <div className="w-full md:w-auto text-center md:col-span-1">{task.description}</div>
+              <div className="w-full md:w-auto text-center md:col-span-1 md:hidden font-semibold">Deadline:</div>
+              <div className="w-full md:w-auto text-center md:col-span-1">{formatDate(task.deadline)}</div>
+              <div className="w-full md:w-auto text-center md:col-span-1">
+                <button
+                  onClick={() => handleDeleteTask(task.id)}
+                  className="bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded"
+                >
+                  Delete
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
 
           </div> 
           <h2 className="text-2xl font-bold mb-4">Tasks Assigned to you</h2>

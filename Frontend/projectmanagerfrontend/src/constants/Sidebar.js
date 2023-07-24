@@ -16,7 +16,7 @@ const Sidebar = () => {
   };
   
   return (
-    <div className="flex  bg-gray-900 text-white">
+    <div className="flex bg-gray-800 md:bg-black text-white">
       {/* Sidebar */}
       <div className={`w-56 bg-gray-800 fixed inset-y-0 left-0 z-50 ${isOpen ? 'block' : 'hidden'} md:block `}> 
       <h2 className="mt-5 p-4 text-3xl">Project Manager</h2>
@@ -123,7 +123,7 @@ const Sidebar = () => {
       {/* Navbar */}
       <div className="flex flex-col flex-1">
         {/* Navbar Header */}
-        <div className="flex  items-center justify-between p-4 bg-gray-800">
+        <div className="flex  items-center justify-between p-4 ">
           <h1 className="text-2xl font-bold">Project Manager</h1>
           {/* Navbar Menu Icon */}
           <button className="md:hidden" onClick={toggleSidebar}>

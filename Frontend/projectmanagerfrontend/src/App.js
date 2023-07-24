@@ -8,21 +8,23 @@ import ProjectPage from './screens/ProjectScreens';
 import ProjectDetails from './constants/Projectdetails';
 import TaskManagerScreen from './constants/Tasks/Tasksection';
 import Sidebar from './constants/Sidebar';
+import WithSidebar from './constants/WithSidebar';
 function App() {
   return (
     <>
-      <BrowserRouter>
-        <Sidebar/>
-        <Routes>
-        <Route exact path="/" element={""}/>
-          <Route exact path="/signup" element={<SignUpScreen/>}/>
-          <Route exact path="/login" element={<LoginScreen/>}/>
-          <Route exact path="/project" element={<ProjectPage/>}/>
-          <Route exact path="/projects/:id" element={<ProjectDetails/>}/>
-          <Route exact path="/tasks" element={<TaskManagerScreen/>}/>
-        </Routes>
-      
+     <BrowserRouter>
+        <WithSidebar>
+          <Routes>
+            <Route exact path="/" element={""}/>
+            <Route exact path="/signup" element={<SignUpScreen/>}/>
+            <Route exact path="/login" element={<LoginScreen/>}/>
+            <Route exact path="/project" element={<ProjectPage/>}/>
+            <Route exact path="/projects/:id" element={<ProjectDetails/>}/>
+            <Route exact path="/tasks" element={<TaskManagerScreen/>}/>
+          </Routes>
+          </WithSidebar>
       </BrowserRouter>
+     
 
 
       

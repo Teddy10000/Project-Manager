@@ -107,8 +107,9 @@ const handleSubmit = (e) => {
   };
   
   return (
-    <div className="flex items-center justify-center min-h-screen bg-black">
-      <div className="bg-white md:w-1/3  p-8 rounded shadow-md">
+    <div className="flex flex-col items-center justify-center min-h-screen bg-black">
+      <h1 className="text-4xl text-white font-bold mb-8">Welcome to <span className="text-yellow-500">Project Manager</span></h1>
+      <div className="bg-white md:w-1/3 p-8 rounded shadow-md">
         <h2 className="text-3xl text-yellow-600 font-bold text-center mb-4">Login</h2>
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
@@ -116,11 +117,11 @@ const handleSubmit = (e) => {
             <div className="flex items-center">
               <FaEnvelope className="text-gray-500 mr-2" />
               <input 
-              type="email" 
-              id="email" 
-              value = {email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="w-full border rounded py-2 px-4" />
+                type="email" 
+                id="email" 
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="w-full border rounded py-2 px-4" />
             </div>
           </div>
           <div className="mb-6">
@@ -129,21 +130,23 @@ const handleSubmit = (e) => {
               <FaLock className="text-gray-500 mr-2" />
               <input 
                 type="password"
-                 id="password"
-                 value = {password}
-                 onChange={(e) => setPassword(e.target.value)} 
-                 className="w-full border rounded py-2 px-4" />
+                id="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)} 
+                className="w-full border rounded py-2 px-4" />
             </div>
           </div>
-          <button type="submit"  className="bg-yellow-500 text-white py-2 px-4 rounded w-full hover:bg-yellow-600">
+          <button type="submit" className="bg-yellow-500 text-white py-2 px-4 rounded w-full hover:bg-yellow-600">
             Log In
           </button>
         </form>
         
         <Modal showModal={showModal} closeModal={closeModal} modalMessage={modalMessage} success={success} />
       </div>
+      <p className="text-white mt-4">Don't have an account? <a href="/signup" className="text-yellow-500">Sign up</a></p>
     </div>
   );
+  
 };
 
 export default LoginScreen;
