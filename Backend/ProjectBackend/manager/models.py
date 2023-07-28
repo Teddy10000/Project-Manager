@@ -15,6 +15,14 @@ class Project(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=255)
     start_date = models.DateTimeField(blank=False, null=False , default=None)
+    choice = (
+       ('completed',('completed')),
+        ('not completed',('not completed')),
+        ('In Progress',('in progress')) ,
+        ('on Hold',('on hold')) ,
+        )
+    status = models.CharField(max_length=20, choices=choice, default='not completed') 
+    progress = models.IntegerField(default=0,max_length=2)
     end_date = models.DateTimeField(blank=False, null=False,default=None)
     project_manager = models.ForeignKey(User, on_delete=models.CASCADE, related_name='project_manager',)
      

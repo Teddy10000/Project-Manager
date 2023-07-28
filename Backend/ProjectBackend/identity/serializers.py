@@ -16,6 +16,7 @@ from allauth.socialaccount.models import SocialAccount
 from allauth.socialaccount.providers.base import AuthProcess
 from allauth.utils import email_address_exists, get_username_max_length
 from dj_rest_auth.serializers import LoginSerializer
+from .models import User
 
 
 
@@ -61,4 +62,14 @@ class CustomLoginSerializer(LoginSerializer):
     username = None; 
     
     def _validate_username(self, username,password):    
-        pass;
+        pass; 
+    
+class UserListSerializer(serializers.ModelSerializer):
+    name = serializers.SerializerMethodField()
+    class Meta:
+        model = User 
+        fields = ['id','name','email']
+        
+    def get_name(self,obj):
+        return obj.first_name + " " + obj.last_name
+        

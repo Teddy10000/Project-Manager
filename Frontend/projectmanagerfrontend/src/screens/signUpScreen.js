@@ -1,7 +1,12 @@
 import React,{useState} from 'react'
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import { FaUser, FaEnvelope, FaLock, FaCalendar, FaPhoneAlt } from 'react-icons/fa';
+import { REGISTRATION_URL } from '../utilities/constant';
+import Modal from '../constants/modal';
 const SignUpScreen = () => {
+  const navigate = useNavigate()
+   const [Signuperror, setSignupError] = useState(null);
     const [first_name, setFirstName] = useState('');
     const [last_name, setLastName] = useState('');
     const [email, setEmail] = useState('');
@@ -10,7 +15,10 @@ const SignUpScreen = () => {
     const [gender, setGender] = useState('');
     const [date_of_birth, setDateOfBirth] = useState('');
     const [phone_number, setPhoneNumber] = useState('');
-    const [formErrors, setFormErrors] = useState([]);    
+    const [formErrors, setFormErrors] = useState([]); 
+    const [showModal, setShowModal] = useState(false);
+    const [modalMessage, setModalMessage] = useState('');
+    const [success, setLoginSuccess] = useState(false);
     
     
     const validateForm = () => {
@@ -30,7 +38,7 @@ const SignUpScreen = () => {
           }
         if (password.trim() === '') {
           errors.push('Password is required');
-        }
+        }  
         if (confirmPassword.trim() === '') {
           errors.push('Confirm password is required');
         }
@@ -54,12 +62,65 @@ const SignUpScreen = () => {
         if (isValid) {
           // Process form submission or API call
 
-        
-
-          console.log(last_name)
+          axios.post(`${REGISTRATION_URL}`, {
+            first_name: first_name,
+            last_name: last_name,
+            email: email,
+            phone_number:phone_number,
+            password1: password,
+            password2: confirmPassword,
+            date_of_birth: date_of_birth,
+            gender: gender
+          }).then(response => {
+            // Save the token in local storage
+            console.log(response.data)
+            localStorage.setItem('access_token', response.data.access);
+            localStorage.setItem('refresh_token', response.data.refresh);
+            console.log(response.data)
+            setShowModal(true)
+            setModalMessage('Logged In successful')
+            setLoginSuccess(true) 
+            setFirstName('')
+            setLastName('')
+            setEmail('')
+            setPassword('')
+            setConfirmPassword('')
+            setGender('')
+            setPhoneNumber('')
+            setDateOfBirth('')
+            // Redirect the user to the dashboard or some other page
+           // navigate('/dashboard');
+          })
+          .catch(error => {
+            // Handle the error
+            if (error.response) {
+                const errorData = error.response.data;
+                let errors = [];
+                for (let key in errorData) {
+                  if (Array.isArray(errorData[key])) {
+                    errors.push(...errorData[key].map((errorMessage) => {
+                      return `${key.charAt(0).toUpperCase() + key.slice(1).replace('_', ' ')}: ${errorMessage}\t`;
+                    }));
+                  } else {
+                    errors.push(`${key.charAt(0).toUpperCase() + key.slice(1).replace('_', ' ')}: ${errorData[key]}\t`);
+                  }
+                }
+                
+            setModalMessage(errors)
+            setShowModal(true)
+            setLoginSuccess(false)
+              } else {
+                setSignupError(["Something went wrong. Please try again later."]);
+              }
+            });
+          };
       
         }
-      };
+      ;
+
+      const closeModal = () => {
+        setShowModal(false);
+      }
 
     return (
     <div className="flex items-center justify-center min-h-screen bg-black">
@@ -112,8 +173,8 @@ const SignUpScreen = () => {
             onChange={(e) => setGender(e.target.value)}
             className="w-full border rounded py-2 px-4">
               <option value="">Select Gender</option>
-              <option value="male">Male</option>
-              <option value="female">Female</option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
               <option value="other">Other</option>
             </select>
           </div>
@@ -167,7 +228,8 @@ const SignUpScreen = () => {
           <button type="submit" className="bg-yellow-500 text-white py-2 px-4 rounded w-full">
             Sign Up
           </button>
-        </form>
+        </form> 
+        <Modal showModal={showModal} closeModal={closeModal} modalMessage={modalMessage} success={success} />
       </div>
     </div>
   );

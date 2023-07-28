@@ -21,7 +21,13 @@ class ProjectCreateView(generics.CreateAPIView):
     permission_classes = [permissions.IsAuthenticated]
 
     def perform_create(self, serializer):
-        # Set the project manager to the current user
+        # Set the project manager to the current user 
+        start_date = serializer.validated_data.get('start_date')
+        end_date = serializer.validated_data.get('end_date')
+
+        if start_date >= end_date:
+            raise serializers.ValidationError("Start date should be less than the end date.")
+
         serializer.save(project_manager=self.request.user)
 
 
@@ -101,7 +107,7 @@ class ProjectTeamCreateView(generics.CreateAPIView):
             raise serializers.ValidationError("User is already a part of the project's team members.")
        
         if project.project_manager == user:
-            raise serializers.ValidationError("You can't assign task to the Project Manager.")
+            raise serializers.ValidationError("Project Manager is already a team Member.")
                 
         # Save the team member instance first
         team_member = serializer.save()
@@ -183,7 +189,12 @@ class TaskCreateView(generics.CreateAPIView):
         # Add the project and request user to the serializer's context
         context = super().get_serializer_context()
         context['project'] = self.get_project()
-        return context
+        return context 
+    
+    def perform_create(self, serializer):
+        # Automatically set the project value as the project ID
+        project = self.get_project()
+        serializer.save(project=project)
     
     
 

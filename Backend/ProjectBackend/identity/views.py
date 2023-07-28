@@ -3,7 +3,7 @@ from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework.views import APIView 
 from rest_framework.response import Response
 from dj_rest_auth.registration.views import RegisterView
-from .serializers import CustomRegisterSerializer
+from .serializers import CustomRegisterSerializer, UserListSerializer
 # Create your views here.
 from allauth.account import app_settings as allauth_account_settings
 from allauth.account.adapter import get_adapter
@@ -32,12 +32,13 @@ from dj_rest_auth.registration.serializers import (
 )
 from dj_rest_auth.utils import jwt_encode
 from dj_rest_auth.views import LoginView
-
-from .serializers import CustomLoginSerializer
+from .models import User
+from .serializers import CustomLoginSerializer , UserListSerializer
 from allauth.socialaccount.providers.google.views import GoogleOAuth2Adapter
 from allauth.socialaccount.providers.oauth2.client import OAuth2Client
 from dj_rest_auth.registration.views import SocialLoginView
-from rest_framework import permissions, viewsets
+from rest_framework import permissions, viewsets 
+from manager.mail import send_email
 # Import other necessary modules and views
 
 # Create your views here.
@@ -123,7 +124,19 @@ class CustomRegisterView(RegisterView):
         Save the user instance and perform additional actions.
         """
         user = serializer.save(self.request)
+       
+      
         print("User saved:", user.__dict__)
+        
+        email_addresses = user._emailaddress_cache  
+        
+        print(email_addresses[0])
+        
+        email = email_addresses[0]
+       
+        #for email_address in email_addresses:
+            #print("Email address:", email_address.email)
+
         if allauth_account_settings.EMAIL_VERIFICATION != allauth_account_settings.EmailVerificationMethod.MANDATORY:
             if api_settings.USE_JWT:
                 self.access_token, self.refresh_token = jwt_encode(user)
@@ -138,6 +151,8 @@ class CustomRegisterView(RegisterView):
             None,
         )
         print(user.__dict__)
+        
+        send_email('Account_Created',"SUCCESSFULLY_CREATED_YOUR_ACCOUNT",[email,])
         return user
 
 
@@ -195,4 +210,11 @@ class GoogleLoginCallback(SocialLoginView):
             'email': user.email,
             # Include any other relevant user data
         }
-        return Response(response_data, status=status.HTTP_200_OK)
+        return Response(response_data, status=status.HTTP_200_OK) 
+    
+    
+
+
+class UserListView(generics.ListAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserListSerializer
