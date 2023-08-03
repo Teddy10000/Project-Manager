@@ -152,7 +152,7 @@ class CustomRegisterView(RegisterView):
         )
         print(user.__dict__)
         
-        send_email('Account_Created',"SUCCESSFULLY_CREATED_YOUR_ACCOUNT", "Your account created",recipient=[email,])
+        send_email('Account_Created',"SUCCESSFULLY_CREATED_YOUR_ACCOUNT", "Your account has been created",recipient=[email,])
         return user
 
 
