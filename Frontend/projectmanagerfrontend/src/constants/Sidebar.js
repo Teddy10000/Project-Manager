@@ -33,38 +33,66 @@ const Sidebar = () => {
 				</div>
 			</section> 
       <div className="divider my-0"></div>
-			<section className="sidebar-content mt-20">
+			<section className="sidebar-content mt-16">
 				<nav className="menu rounded-md">
 					<section className="menu-section px-4">
 						<span className="menu-title">Main menu</span>
 						<ul className="menu-items ">
-							<li className="menu-item text-2xl my-2">
-								<svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 opacity-75" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-									<path strokeLinecap="round" strokeLinejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
-									<path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-								</svg>
+              <li className="menu-item text-xl my-2">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-5 w-5 opacity-75"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth="2"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M3 3h18v18H3zm4 6h4m-4 4h4m-4 4h4m6-10h4m-4 4h4m-4 4h4"
+              />
+              </svg>
 								<span>Dashboard</span>
 							</li>
           
-							<li className="menu-item text-2xl my-2">
-							<svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 opacity-75" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M13 10h-3a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h3m-1-9l-2-2a2 2 0 0 0-2 0l-2 2a2 2 0 0 0 0 2l2 2a2 2 0 0 0 2 0l2-2a2 2 0 0 0 0-2z" />
-              </svg>
+							<li className="menu-item text-xl my-2">
+              <svg
+                  xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 opacity-75" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"
+                  />
+                </svg>
 								<span>Projects</span>
 							</li>
-							<li className="menu-item menu-active text-2xl my-4">
+              <li className="menu-item text-xl my-2">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 opacity-75" fill="none"  viewBox="0 0 24 24" stroke="currentColor"
+                    strokeWidth="2"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"
+                    />
+                  </svg>
+								<span>Tasks</span>
+							</li>
+							<li className="menu-item menu-active text-xl my-4">
 								<svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 opacity-75" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
 									<path strokeLinecap="round" strokeLinejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
 								</svg>
 								<span>Teams</span>
 							</li>
-              <li className="menu-item text-2xl my-2">
+              <li className="menu-item text-xl my-2">
               <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 opacity-75" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M20 4v6m0 0v6m0-6h-6m6 0H4a2 2 0 00-2 2v10a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2z" />
               </svg>
 								<span>Project Milestone</span>
 							</li>
-              <li className="menu-item text-2xl my-2">
+              <li className="menu-item text-xl my-2">
               <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 opacity-75" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M20 4v6m0 0v6m0-6h-6m6 0H4a2 2 0 00-2 2v10a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2z" />
               </svg>

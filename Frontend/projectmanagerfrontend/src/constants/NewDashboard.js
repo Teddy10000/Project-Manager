@@ -16,10 +16,12 @@ const NewDashboard = ({ projects, userId }) => {
   const [showProjectForms,setShowProjectForms] = useState(false);
 const [showModal,setShowModal] = useState(false)
 const [success,setProjectSuccess] = useState(false)
-const [modalMessage,setModalMessage] = useState("")
+const [modalMessage,setModalMessage] = useState("") 
+
+const [loading, setLoading] = useState(false);
 
   const handleProjectCreate = async(newProject) => {
-   
+    setLoading(true);
     // Handle project creation logic, such as sending data to the backend or performing validation
     // Reset form fields 
 
@@ -30,7 +32,7 @@ const [modalMessage,setModalMessage] = useState("")
     const response = await api.post(`${PROJECTS_URL}create/`, newProject);
       if (response.data){
         setShowModal(true)
-      
+        setLoading(false);
         setModalMessage('Project Created successfully');
         setProjectSuccess(true)
       };
@@ -50,10 +52,11 @@ const [modalMessage,setModalMessage] = useState("")
         }
       }
       setModalMessage(errorts)
+      setLoading(false);
       setShowModal(true)
       setProjectSuccess(false)
     } else {
-      
+      setLoading(false);
       setModalMessage(["Something went wrong. Please try again later."]);
       setShowModal(true)
       setProjectSuccess(false)
@@ -103,6 +106,13 @@ const [modalMessage,setModalMessage] = useState("")
       {showProjectForms && (
         <div className="fixed inset-0 flex justify-center items-center bg-opacity-50 bg-gray-500 z-50">
           <div className="bg-white p-8 rounded-md shadow-md">
+           {/* Spinner Circle */}
+       {/* Overlay and Spinner */}
+       {loading && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur">
+          <div className="spinner-circle"></div>
+        </div>
+      )}
             <ProjectCreationForm handleProjectCreate={handleProjectCreate}  handleClose={handleClose} />
           </div>
           <Modal showModal={showModal} closeModal={closeModal} modalMessage={modalMessage} success={success} />
