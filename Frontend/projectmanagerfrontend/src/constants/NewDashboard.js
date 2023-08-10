@@ -9,7 +9,7 @@ import api from '../apis/api-auth';
 import Modal from './modal';
 
 
-
+///This is the projects dashboard 
 
 const NewDashboard = ({ projects, userId }) => {
 
@@ -78,8 +78,9 @@ const [modalMessage,setModalMessage] = useState("")
   }
   
   return (
-    <div className="p-4  bg-gray-900 md:ml-56">
-      <h1 className="text-3xl font-bold mb-4 text-white">My Projects</h1> 
+    <div className="flex flex-col p-4 sm:ml-[290px] sm:mt-[-10px] h-screen  bg-gray-900 ">
+      <h1 className="text-3xl w-full font-bold  text-white">My Projects</h1> 
+      <div className="divider"></div>
 
       {projects.length > 0 && (
         <div className="mb-8">
