@@ -153,7 +153,22 @@ const ProjectDetails = ({ project }) => {
 
 
   return (
-    <div className=" md:ml-56 flex flex-col md:flex-row mx-auto p-4">
+    <div className=" sm:ml-[290px] flex flex-col md:flex-row mx-auto p-4">
+    <div className="text-3xl flex flex-col">
+      {projectdetails.name} 
+      <div class="avatar-group">
+     
+      <div class="avatar">
+        <img src="https://i.pravatar.cc/150?u=a042581f4e29026024d" alt="avatar" />
+      </div>
+      <div class="avatar">
+        <img src="https://i.pravatar.cc/150?u=a042581f4e29026024d" alt="avatar" />
+      </div>
+      <div class="avatar">
+        <div>+000</div>
+      </div>
+    </div>
+    </div>
     
     <div className="bg-white p-4 w-full md:w-1/2 text-center justify-center rounded-md shadow-md ">
       <h2 className="text-2xl font-semibold ">DETAILS ABOUT PROJECT</h2>
