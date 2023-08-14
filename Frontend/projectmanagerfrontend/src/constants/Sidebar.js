@@ -6,13 +6,13 @@ import MilestonesChart from './Milestones';
 import TasksChart from './Taskschart';
 import ProjectScreen from './Project-list';
 import NewDashboard from './NewDashboard';
-import { Link } from 'react-router-dom';
+import { Link , NavLink ,useLocation} from 'react-router-dom';
 import api from '../apis/api-auth';
 import { USER_DETAILED_URL } from '../utilities/constant';
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [user , setUser] = useState('')
-
+  const location = useLocation();
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
 
@@ -20,7 +20,11 @@ const Sidebar = () => {
   function generateRandomAvatarUrl() {
 	const randomSeed = Math.floor(Math.random() * 1000) + 1;
 	return `https://i.pravatar.cc/150?u=${randomSeed}`;
-  }
+  };
+
+  const isActiveRoute = (path) => {
+    return location.pathname === path;
+  };
 
 const avatarUrl = generateRandomAvatarUrl()
   useEffect(() => {
@@ -62,7 +66,7 @@ const avatarUrl = generateRandomAvatarUrl()
 						<span className="menu-title">Main menu</span>
 								<ul className="menu-items "> 
 								<Link to={'/'}>
-									<li className="menu-item text-xl my-2">
+									<li className={`menu-item text-xl my-2 ${isActiveRoute('/') ? 'menu-active' : ''}`}>
 									<svg
 									xmlns="http://www.w3.org/2000/svg"
 									className="h-5 w-5 opacity-75"
@@ -81,8 +85,8 @@ const avatarUrl = generateRandomAvatarUrl()
 									</li> 
 							</Link>
 							
-							<Link to={'/project'}>
-								<li className="menu-item text-xl my-2">
+							<NavLink to={'/project'} activeClassName="menu-active">
+								<li className={`menu-item text-xl my-2 ${isActiveRoute('/project') ? 'menu-active' : ''}`}>
 									<svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 opacity-75" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
 									<path
 										strokeLinecap="round"
@@ -92,9 +96,9 @@ const avatarUrl = generateRandomAvatarUrl()
 									</svg>
 								<span>Projects</span>
 								</li>
-							</Link>
+							</NavLink>
 							<Link to={'/tasks'}>
-								<li className="menu-item text-xl my-2">
+								<li className={`menu-item text-xl my-2 ${isActiveRoute('/tasks') ? 'menu-active' : ''}`}>
 									<svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 opacity-75" fill="none"  viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
 										<path strokeLinecap="round" strokeLinejoin="round" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
 									</svg>
@@ -102,7 +106,7 @@ const avatarUrl = generateRandomAvatarUrl()
 									</li>
 							</Link>
 							<Link to={"/teams"}>
-							<li className="menu-item menu-active text-xl my-4">
+							<li className={`menu-item text-xl my-2 ${isActiveRoute('/teams') ? 'menu-active' : ''}`}>
 								<svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 opacity-75" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
 									<path strokeLinecap="round" strokeLinejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
 								</svg>
@@ -110,7 +114,7 @@ const avatarUrl = generateRandomAvatarUrl()
 							</li>
 							</Link>
 							<Link to={"/milestones"}>
-							<li className="menu-item text-xl my-2">
+							<li className={`menu-item text-xl my-2 ${isActiveRoute('/milestones') ? 'menu-active' : ''}`}>
 							<svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 opacity-75" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
 								<path strokeLinecap="round" strokeLinejoin="round" d="M20 4v6m0 0v6m0-6h-6m6 0H4a2 2 0 00-2 2v10a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2z" />
 							</svg>
@@ -118,7 +122,7 @@ const avatarUrl = generateRandomAvatarUrl()
 							</li>
 							</Link>
 							<Link to={'/issues'}>
-							<li className="menu-item text-xl my-2">
+							<li className={`menu-item text-xl my-2 ${isActiveRoute('/issues') ? 'menu-active' : ''}`}>
 								<svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 opacity-75" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
 									<path strokeLinecap="round" strokeLinejoin="round" d="M20 4v6m0 0v6m0-6h-6m6 0H4a2 2 0 00-2 2v10a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2z" />
 								</svg>
