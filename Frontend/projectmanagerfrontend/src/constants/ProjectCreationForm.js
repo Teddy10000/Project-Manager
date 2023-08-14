@@ -87,14 +87,14 @@ const ProjectCreationForm = ({handleProjectCreate, handleClose}) => {
   <div className="flex justify-between">
     <button
       type="submit"
-      className="mr-2 bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded"
+      className="mr-2 bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-xl"
     >
       Create Project
     </button> 
     <button
       type="submit"
       onClick={handleClose}
-      className="ml-2 bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded"
+      className="ml-2 btn btn-error hover:bg-red-700"
     >
       Close Project
     </button> 

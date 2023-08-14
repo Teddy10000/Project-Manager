@@ -4,7 +4,7 @@ from rest_framework_simplejwt.views import (
     TokenRefreshView,
 )
 from rest_framework.authtoken.views import obtain_auth_token
-from .views import CustomRegisterView, GoogleLogin, UserListView
+from .views import CustomRegisterView, GoogleLogin, UserListView , UserMeView
 
 urlpatterns = [
     # Custom registration view
@@ -14,7 +14,8 @@ urlpatterns = [
     path('api/auth/login/', TokenObtainPairView.as_view(), name='token_create'),
     path('api/auth/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('auth/google', GoogleLogin.as_view(), name='google_login'),
-    path('users/', UserListView.as_view(), name='users'),
+    path('users/', UserListView.as_view(), name='users'),  
+    path('user/', UserMeView.as_view(), name='users'),
     # Other URLs and views
     # ...
 

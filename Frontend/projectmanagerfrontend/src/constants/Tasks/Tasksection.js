@@ -161,8 +161,8 @@ const TaskManagerScreen = () => {
   
 
   return (
-    <div>
-      <div className="md:ml-56 bg-gray-900 sm:h-[90vh] p-4">
+    <div className="flex flex-col">
+      <div className="sm:ml-[290px] bg-gray-900 h-screen p-4">
         <h2 className="text-3xl font-bold mb-4 text-white">Manage Tasks Related to Your Projects</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {projects.map((project) => (

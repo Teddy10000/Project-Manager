@@ -8,3 +8,4 @@ export const TASK_DELETE_URL = "http://localhost:8000/manager/tasks/"
 
 export const PROJECT_DETAILS_URL = "http://localhost:8000/manager/projects/"
 export const USERS_LIST_URL = "http://localhost:8000/account/users/"
+export const USER_DETAILED_URL = "http://localhost:8000/account/user/"

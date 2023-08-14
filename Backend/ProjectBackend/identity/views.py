@@ -3,7 +3,7 @@ from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework.views import APIView 
 from rest_framework.response import Response
 from dj_rest_auth.registration.views import RegisterView
-from .serializers import CustomRegisterSerializer, UserListSerializer
+from .serializers import CustomRegisterSerializer, UserListSerializer , UserDetailedSerializer 
 # Create your views here.
 from allauth.account import app_settings as allauth_account_settings
 from allauth.account.adapter import get_adapter
@@ -152,7 +152,7 @@ class CustomRegisterView(RegisterView):
         )
         print(user.__dict__)
         
-        send_email('Account_Created',"SUCCESSFULLY_CREATED_YOUR_ACCOUNT",[email,])
+        send_email('Account_Created',"SUCCESSFULLY_CREATED_YOUR_ACCOUNT", "Your account has been created",recipient=[email,])
         return user
 
 
@@ -217,4 +217,10 @@ class GoogleLoginCallback(SocialLoginView):
 
 class UserListView(generics.ListAPIView):
     queryset = User.objects.all()
-    serializer_class = UserListSerializer
+    serializer_class = UserListSerializer 
+
+class UserMeView(generics.RetrieveAPIView):
+    serializer_class = UserDetailedSerializer
+
+    def get_object(self):
+        return self.request.user

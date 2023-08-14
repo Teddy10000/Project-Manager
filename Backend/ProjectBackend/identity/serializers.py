@@ -73,3 +73,13 @@ class UserListSerializer(serializers.ModelSerializer):
     def get_name(self,obj):
         return obj.first_name + " " + obj.last_name
         
+
+class UserDetailedSerializer(serializers.ModelSerializer):
+    name = serializers.SerializerMethodField()
+    class Meta:
+        model = User 
+        fields = ['id','name','email','gender','date_of_birth','phone_number']
+        
+    def get_name(self,obj):
+        return obj.first_name + " " + obj.last_name
+        

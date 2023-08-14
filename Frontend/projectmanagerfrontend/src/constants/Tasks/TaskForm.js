@@ -93,14 +93,14 @@ const TaskForm = ({ teamMembers, handleTaskSubmit,handleClose }) => {
       <div className="flex space-x-4">
         <button
           type="submit"
-          className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded mt-4"
+          className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-xl mt-4"
         >
           Add Task
         </button>
         <button
           type="submit"
           onClick={handleClose}
-          className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded mt-4"
+          className="btn btn-error hover:bg-red-700 mt-4"
         >
           Close Task
         </button>
