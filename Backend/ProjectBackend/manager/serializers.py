@@ -188,7 +188,7 @@ class ProjectCreateSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Project
-        fields = ['name','start_date','end_date']  # Include all fields for the detailed view of the project
+        fields = ['name','type','start_date','end_date']  # Include all fields for the detailed view of the project
 
 
 
