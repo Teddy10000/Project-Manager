@@ -70,6 +70,7 @@ const ProjectDetails = ({ project }) => {
         setModalMessage('Team Member added successfully');
         setAddedSuccess(true)
       };
+      console.log(projectdetails)
    
     }
    catch (error) {
@@ -153,29 +154,61 @@ const ProjectDetails = ({ project }) => {
 
 
   return (
-    <div className=" sm:ml-[290px] flex flex-col md:flex-row mx-auto p-4">
-    <div className="text-3xl flex flex-col">
+    <div className=" sm:ml-[290px] flex flex-col mx-auto p-4"> 
+     {/*This takes care of the head section*/}
+    <div className=" mx-auto  font-bold flex md:flex-row flex-col ">
+     <div className="text-4xl md:text-6xl ">
       {projectdetails.name} 
-      <div class="avatar-group">
+      </div>
+      <div class="avatar-group mt-4 flex mx-14">
+     
+     {projectdetails && projectdetails.team_members.length > 0 ? (
+  projectdetails.team_members.map((member) => (
+    <div class="avatar">
+        <img src="https://i.pravatar.cc/150?u=a042581f4e29026024d" alt="avatar" />
+      </div>
+  ))
+) : (
+  <p className="text-gray-500">No team members added</p>
+)}
      
       <div class="avatar">
-        <img src="https://i.pravatar.cc/150?u=a042581f4e29026024d" alt="avatar" />
-      </div>
-      <div class="avatar">
-        <img src="https://i.pravatar.cc/150?u=a042581f4e29026024d" alt="avatar" />
-      </div>
-      <div class="avatar">
-        <div>+000</div>
-      </div>
+            <div>+000</div> 
+      </div>  
+     
     </div>
+    <span class="badge text-sm md:h-10 md:mt-4 badge-secondary badge-sm flex">{projectdetails.type}</span> 
+ 
+
     </div>
+    <div class="divider w-full"></div>
+    {/** This will take care of the middle section */}
+    <div className="flex flex-col md:flex-row">
+      <ol class="steps">
+      <li className={`step step-primary  ${projectdetails.status === 'On hold' ? 'step-active' : ''} ${projectdetails.status === 'In Progress' ? 'step-done' : ''} ${projectdetails.status === 'Completed' ? 'step-done' : ''} `}>
+          <div class="step-circle">1</div>
+          <h3>On hold</h3>
+        </li>
+        <li className={`step step-primary ${projectdetails.status === 'In Progress' ? 'step-active' : ''} ${projectdetails.status === 'Completed' ? 'step-done' : ''}`}>
+          <div class="step-circle">2</div>
+          <h3>In progress</h3>
+        </li>
+        <li className={`step step-primary  ${projectdetails.status === 'Completed' ? 'step-active' : ''}`}>
+          <div class="step-circle">3</div>
+          <h3>Completed</h3>
+        </li>
+      </ol> 
+      <button class="btn btn-primary w-52 mx-auto">Edit the Project status</button>
+
+    </div>
+   
     
-    <div className="bg-white p-4 w-full md:w-1/2 text-center justify-center rounded-md shadow-md ">
+    {/**<div className="bg-white p-4 w-full md:w-1/2 text-center justify-center rounded-md shadow-md ">
       <h2 className="text-2xl font-semibold ">DETAILS ABOUT PROJECT</h2>
     <h1 className="text-3xl text-black font-bold mb-4">{projectdetails.name}</h1>
     <p><span className="text-lg justify-center  ml-4 font-medium flex-row flex"><FaClock/>Start Date:</span> {projectdetails.start_date}</p>
     <p className='mt-4'><span className="text-lg justify-center ml-4 font-medium flex-row flex"><FaClock/>End  Date:</span> {projectdetails.end_date}</p>
-    {/* Project Status */}
+        
     <div className="mt-4 flex items-center">
         <div className={`w-4 h-4 rounded-full ${projectdetails.status === 'In Progress' ? 'bg-green-500' : 'bg-red-500'}`}></div>
         <p className={`ml-2 font-semibold ${projectdetails.status === 'In Progress' ? 'text-green-500' : 'text-red-500'}`}>{projectdetails.status}</p>
@@ -213,7 +246,7 @@ const ProjectDetails = ({ project }) => {
     <div key={member.id} className="text-gray-700 border p-4 rounded-lg shadow-md bg-white hover:bg-gray-100 transition duration-300">
       <p className="mt-2  text-xl font-semibold"> {member.user.first_name} {member.user.last_name}</p>
    
-      {/* Add any other properties you want to display */}
+    
     </div>
   ))
 ) : (
@@ -240,8 +273,9 @@ const ProjectDetails = ({ project }) => {
 
 
       
-      )}
-  </div> 
+      )} 
+  </div> */}
+{/*
   <div className="bg-white p-4 w-full md:w-1/2 text-center justify-center rounded-md shadow-md">
     <h2 className="text-3xl text-black">PROJECT MILESTONE</h2>
     <ul>
@@ -258,24 +292,25 @@ const ProjectDetails = ({ project }) => {
 
       {showDetailView && milestoneDetails && (
         <div>
-          {/* Render the detailed view component */}
+      
           <h2>Project Milestone Details</h2>
-          {/* Display the details of the selected milestone using milestoneDetails */}
+          /* Display the details of the selected milestone using milestoneDetails 
           <button onClick={handleCloseDetailView}>Close</button>
         </div>
-         )} 
+         )}  
             {showUpdateForm && (
         <div>
-          {/* Render the update form component */}
+          {/* Render the update form component 
           <h2>Update Project Milestone</h2>
-          {/* Add the form to update the selected milestone */}
+          {/* Add the form to update the selected milestone 
           <button onClick={handleUpdateFormClose}>Cancel</button>
         </div>
-      )}
+      )} 
 
-      {/* Render the create form component */}
+      {/* Render the create form component 
       <button onClick={() => setShowCreateForm(true)}>Create Project Milestone</button>
-    </div>
+    </div> */}
+    
   </div>
   
 );

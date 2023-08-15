@@ -4,6 +4,7 @@ const ProjectCreationForm = ({handleProjectCreate, handleClose}) => {
  
  
   const [projectName, setProjectName] = useState('');
+  const [projectType, setProjectType] = useState('');
   const [projectStartDate, setProjectStartDate] = useState('');
   const [projectEndDate, setProjectEndDate] = useState('');
   const [showAddTeamMembersForm, setShowAddTeamMembersForm] = useState(false);
@@ -19,6 +20,7 @@ const ProjectCreationForm = ({handleProjectCreate, handleClose}) => {
 
    const newProject = {
     name: projectName,
+    type:projectType,
     start_date: projectStartDate,
     end_date: projectEndDate,
    }
@@ -26,6 +28,7 @@ const ProjectCreationForm = ({handleProjectCreate, handleClose}) => {
     
    handleProjectCreate(newProject)
     setProjectName('');
+    setProjectType('');
     setProjectStartDate('');
     setProjectEndDate('');
   };
@@ -58,6 +61,17 @@ const ProjectCreationForm = ({handleProjectCreate, handleClose}) => {
       id="projectName"
       value={projectName}
       onChange={(e) => setProjectName(e.target.value)}
+      required
+      className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:border-blue-500"
+    />
+  </div>
+  <div className="mb-4">
+    <label htmlFor="projectType" className="block text-gray-700 font-semibold mb-2">Project Type</label>
+    <input
+      type="text"
+      id="projectName"
+      value={projectName}
+      onChange={(e) => setProjectType(e.target.value)}
       required
       className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:border-blue-500"
     />
