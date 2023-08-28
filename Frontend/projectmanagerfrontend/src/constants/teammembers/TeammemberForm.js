@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { USERS_LIST_URL } from '../../utilities/constant';
 import api from '../../apis/api-auth';
-
+import { MdCancel,MdAdd } from "react-icons/md";
 const TeamMemberForm = ({ handleAddTeamMember, handleClose }) => {
   const [user, setUser] = useState('');
   const [role, setRole] = useState('');
@@ -78,8 +78,8 @@ const TeamMemberForm = ({ handleAddTeamMember, handleClose }) => {
         <label htmlFor="email">Phone Number:</label>
         <input className="ml-4" type="phone number" id="phone number" value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} />
       </div>
-      <button className="bg-blue-500 border-2 rounded-md w-12 hover:bg-blue-600 mr-4" onClick= {handleAddTeamMember} type="submit">Add</button>
-      <button className="bg-blue-500 border-2 rounded-md w-12 hover:bg-blue-600 mr-4" onClick = {handleClose}  type="submit">Close</button>
+      <button className="btn btn-primary hover:bg-blue-600 mr-4" onClick= {handleAddTeamMember} type="submit"><MdAdd/>Add</button>
+      <button className="btn btn-primary hover:bg-blue-600 mr-4" onClick = {handleClose}  type="submit"><MdCancel/>Close</button>
     </form>
    
   );

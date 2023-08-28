@@ -5,6 +5,7 @@ import { PROJECTS_URL } from '../utilities/constant';
 import { FaClock, FaEdit } from 'react-icons/fa';
 import TeamMemberForm from './teammembers/TeammemberForm';
 import Modal from './modal';
+import { MdAdd } from "react-icons/md";
 const ProjectDetails = ({ project }) => {
   const [teamMembers, setTeamMembers] = useState([]);
   const [projectdetails, setProjectDetails] = useState('') 
@@ -204,7 +205,7 @@ const ProjectDetails = ({ project }) => {
           <h3>Completed</h3>
         </li>
       </ol> 
-      <button class="btn btn-primary w-52 mx-auto">Edit the Project status</button>
+      <button class="btn btn-primary w-52 mx-auto"><FaEdit/>Edit the Project status</button>
 
     </div>
     <div className="flex flex-col lg:flex-row gap-5">
@@ -231,7 +232,7 @@ const ProjectDetails = ({ project }) => {
     </div>
   </div>
   {projectdetails && projectdetails.project_manager &&(
-  <div className="card mt-5 max-w-[500px]">
+  <div className="card bg-blue-600 mt-5 max-w-[500px]">
     <div className="card-body">
       <h2 className="text-2xl font-semibold mb-2">Project Manager</h2>
       <div className="border-t border-gray-300 pt-2">
@@ -246,8 +247,50 @@ const ProjectDetails = ({ project }) => {
       </div>
     </div>
   </div>
-  )}
+  )} 
+  
 </div> 
+    <div className="flex flex-col md:flex-row ">
+    <div className="mt-5 p-4 card">
+        <div className="card-header">
+          Project Team Members
+          {projectdetails && projectdetails.team_members.length > 0 && (  <div className="avatar avatar-ring-primary avatar-squared truncate">
+	          <div>{projectdetails.team_members.length}</div>
+      </div>)}
+        </div> 
+        <div className="card-body">
+          {projectdetails && projectdetails.team_members.length > 0 ? (
+          projectdetails.team_members.map((member) => (
+            <div key={member.id} className="text-gray-700 border p-4 rounded-lg shadow-md bg-white hover:bg-gray-100 transition duration-300">
+              <p className="mt-2  text-xl font-semibold"> {member.user.first_name} {member.user.last_name}</p>
+            </div>
+          ))
+        ) : (
+          <p className="text-gray-500">No team members added</p>
+        )}
+        </div>
+        <div className="card-footer">
+          <button 
+          onClick={handleshowprojectteamform}
+          className="btn btn-primary">
+          <MdAdd/> Add Project Team Member
+          </button>
+        </div>
+        {showFormsAddteam && (
+        <div className="fixed inset-0 flex justify-center items-center bg-opacity-50 bg-gray-500 z-50">
+          <div className="bg-white p-8 rounded-md shadow-md">
+            <TeamMemberForm handleAddTeamMember={handleAddTeamMember} handleClose={handleClose} />
+          </div>
+          <Modal showModal={showModal} closeModal={closeModal} modalMessage={modalMessage} success={success} />
+        </div> 
+      )} 
+    </div>
+    <div className="md:ml-5 mt-5 p-4 card">
+        <div className="card-header">
+          Project's Statistics
+        </div>
+    </div>
+  </div>
 
 
 
