@@ -103,7 +103,8 @@ const ProjectDetails = ({ project }) => {
     // Logic to add team members to the project
     // Update the teamMembers state with the new team members
     // You can use an input form or a modal to capture the team member details
-  };
+  }; 
+
 
   //when click on a particualr project milestone , sends a get request and updates the milestone detailed view state vatiables
   const handleMilestoneClick = async (milestoneId) => {
@@ -151,6 +152,11 @@ const ProjectDetails = ({ project }) => {
       console.error('Error deleting milestone:', error);
     }
   };
+  function formatDateString(dateString) {
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    const formattedDate = new Date(dateString).toLocaleDateString('en-US', options);
+    return formattedDate;
+  }
 
 
   return (
@@ -183,7 +189,7 @@ const ProjectDetails = ({ project }) => {
     </div>
     <div class="divider w-full"></div>
     {/** This will take care of the middle section */}
-    <div className="flex flex-col md:flex-row">
+    <div className="  flex flex-col md:flex-row">
       <ol class="steps">
       <li className={`step step-primary  ${projectdetails.status === 'On hold' ? 'step-active' : ''} ${projectdetails.status === 'In Progress' ? 'step-done' : ''} ${projectdetails.status === 'Completed' ? 'step-done' : ''} `}>
           <div class="step-circle">1</div>
@@ -201,6 +207,50 @@ const ProjectDetails = ({ project }) => {
       <button class="btn btn-primary w-52 mx-auto">Edit the Project status</button>
 
     </div>
+    <div className="flex flex-col lg:flex-row gap-5">
+  <div className="card mt-5 max-w-[800px]">
+    <div className="card-body">
+      <div className="flex flex-col lg:flex-row lg:items-center gap-24 lg:gap-60">
+        <div className="flex flex-col">
+          <span className="text-gray-600 text-sm">
+            <FaClock /> Project Start Date
+          </span>
+          <span className="text-lg font-semibold">
+            {formatDateString(projectdetails.start_date)}
+          </span>
+        </div>
+        <div className="flex flex-col">
+          <span className="text-gray-600 text-sm">
+            <FaClock /> Project End Date
+          </span>
+          <span className="text-lg font-semibold">
+            {formatDateString(projectdetails.end_date)}
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+  {projectdetails && projectdetails.project_manager &&(
+  <div className="card mt-5 max-w-[500px]">
+    <div className="card-body">
+      <h2 className="text-2xl font-semibold mb-2">Project Manager</h2>
+      <div className="border-t border-gray-300 pt-2">
+        <p className="text-lg">
+          <span className="font-semibold">Name:</span>{" "}
+          {projectdetails.project_manager[0]}
+        </p>
+        <p className="text-lg">
+          <span className="font-semibold">Email:</span>{" "}
+          {projectdetails.project_manager[1]}
+        </p>
+      </div>
+    </div>
+  </div>
+  )}
+</div> 
+
+
+
    
     
     {/**<div className="bg-white p-4 w-full md:w-1/2 text-center justify-center rounded-md shadow-md ">
