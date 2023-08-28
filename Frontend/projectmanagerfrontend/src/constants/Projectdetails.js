@@ -260,12 +260,20 @@ const ProjectDetails = ({ project }) => {
         </div> 
         <div className="card-body">
           {projectdetails && projectdetails.team_members.length > 0 ? (
-          projectdetails.team_members.map((member) => (
-            <div key={member.id} className="text-gray-700 border p-4 rounded-lg shadow-md bg-white hover:bg-gray-100 transition duration-300">
-              <p className="mt-2  text-xl font-semibold"> {member.user.first_name} {member.user.last_name}</p>
-            </div>
-          ))
-        ) : (
+            projectdetails.team_members.map((member) => (
+  <div key={member.id} className="flex-row flex text-gray-700 border p-4 rounded-lg shadow-md bg-white hover:bg-gray-100 transition duration-300">
+    <div className="flex items-center justify-between w-full">
+      <p className="mt-2 text-xl font-semibold">
+        {member.user.first_name} {member.user.last_name}
+      </p>
+      <div className="ml-4 avatar avatar-online">
+        <img src="https://i.pravatar.cc/150?u=a042581f4e29026024d" alt="avatar" />
+      </div>
+    </div>
+  </div>
+
+
+        ))) : (
           <p className="text-gray-500">No team members added</p>
         )}
         </div>

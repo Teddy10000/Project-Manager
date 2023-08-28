@@ -58,9 +58,9 @@ const TeamMemberForm = ({ handleAddTeamMember, handleClose }) => {
 
       <form onSubmit={handleSubmit}>
       <h2>Add Team Member</h2>
-      <div className="m-4">
-      <label className="mr-4" htmlFor="name">Name:</label>
-      <select value={user} onChange={(e) => setUser(e.target.value)}>
+      <div className="">
+      <label className="" htmlFor="name">Name:</label>
+      <select className="select select-primary" value={user} onChange={(e) => setUser(e.target.value)}>
         <option value="">Select Team Member</option>
         {/* Render options for team members */}
         {users.map((userr) => (
@@ -70,14 +70,22 @@ const TeamMemberForm = ({ handleAddTeamMember, handleClose }) => {
         ))}
       </select>
     </div>
-      <div className="m-4">
-        <label htmlFor="role">Role:</label>
-        <input className="ml-4" type="role" id="role" value={role} onChange={(e) => setRole(e.target.value)} />
-      </div>
-      <div className="m-4">
-        <label htmlFor="email">Phone Number:</label>
-        <input className="ml-4" type="phone number" id="phone number" value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} />
-      </div>
+    <div class="form-field">
+			<label class="form-label">Role:</label>
+
+			<input placeholder="Type here" type="role" className="input max-w-full" value={role} onChange={(e) => setRole(e.target.value)}  />
+			<label class="form-label">
+				<span class="form-label-alt">Please enter the users role.</span>
+			</label>
+		</div>
+    <div class="form-field">
+			<label class="form-label">Phone Number:</label>
+
+			<input placeholder="Type Phone Number here" type="role" className="input max-w-full" value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)}  />
+			<label class="form-label">
+				<span class="form-label-alt">Please enter the users Phone Number.</span>
+			</label>
+		</div>
       <button className="btn btn-primary hover:bg-blue-600 mr-4" onClick= {handleAddTeamMember} type="submit"><MdAdd/>Add</button>
       <button className="btn btn-primary hover:bg-blue-600 mr-4" onClick = {handleClose}  type="submit"><MdCancel/>Close</button>
     </form>
