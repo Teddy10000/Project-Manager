@@ -81,7 +81,7 @@ const [loading, setLoading] = useState(false);
   }
   
   return (
-    <div className="flex flex-col p-4 sm:ml-[290px] sm:mt-[-10px] h-screen  bg-gray-900 ">
+    <div className="flex flex-col p-4 sm:ml-[290px] sm:mt-[-10px] h-screen  bg-gradient-to-b from-slate-500 to-gray-700 ">
       <h1 className="text-3xl w-full font-bold  text-white">My Projects</h1> 
       <div className="divider"></div>
 

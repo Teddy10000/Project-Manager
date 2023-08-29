@@ -69,7 +69,8 @@ const ProjectDetails = ({ project }) => {
         setShowModal(true)
         setShowSuccesMessage(true);
         setModalMessage('Team Member added successfully');
-        setAddedSuccess(true)
+        setAddedSuccess(true) 
+        projectdetails.team_members.push(newTeamMember);
       };
       console.log(projectdetails)
    
@@ -302,32 +303,37 @@ const ProjectDetails = ({ project }) => {
         <div className="divider"></div>
         <div className="card-body">
         <div className="flex w-full overflow-x-auto">
-	<table className="table-zebra table">
-		<thead>
-			<tr>
-				<th>Type</th>
-				<th>Name</th>
-				<th>Description</th>
-				<th>Date</th>
-			</tr>
-		</thead>
-		<tbody>
+        <table className="table-zebra table">
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Date</th>
+    </tr>
+  </thead>
+  <tbody>
     {projectMilestones && projectMilestones.length > 0 ? (
-      projectMilestones.map((milestones) => {
-        <tr>
-				<th>1</th>
-				<td>{milestones.name}</td>
-				<td>{milestones.description}</td>
-				<td>{milestones.date}</td>
-			</tr>
-      })
-    ):(
-      <p className="font-bold text-xl">No project milestones please</p>
+      projectMilestones.map((milestone) => (
+        <tr key={milestone.id}>
+          <td>1</td>
+          <td>{milestone.name}</td>
+          <td>{milestone.description}</td>
+          <td>{milestone.date}</td>
+        </tr>
+      ))
+    ) : (
+      <tr>
+        <td colSpan="4">
+          <p className="font-bold text-xl text-center">
+            No project milestones, please
+          </p>
+        </td>
+      </tr>
     )}
-			
+  </tbody>
+</table>
 
-		</tbody>
-	</table>
 </div>
         </div>
     </div>
