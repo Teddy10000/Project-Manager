@@ -251,7 +251,7 @@ const ProjectDetails = ({ project }) => {
   
 </div> 
     <div className="flex flex-col md:flex-row ">
-    <div className="mt-5 p-4 card">
+    <div className="mt-5 p-4 card max-w-lg">
         <div className="card-header">
           Project Team Members
           {projectdetails && projectdetails.team_members.length > 0 && (  <div className="avatar avatar-ring-primary avatar-squared truncate">
@@ -261,7 +261,7 @@ const ProjectDetails = ({ project }) => {
         <div className="card-body">
           {projectdetails && projectdetails.team_members.length > 0 ? (
             projectdetails.team_members.map((member) => (
-  <div key={member.id} className="flex-row flex text-gray-700 border p-4 rounded-lg shadow-md bg-white hover:bg-gray-100 transition duration-300">
+  <div key={member.id} className="flex-row flex text-gray-700 border p-1 rounded-lg shadow-md bg-white hover:bg-gray-100 transition duration-300">
     <div className="flex items-center justify-between w-full">
       <p className="mt-2 text-xl font-semibold">
         {member.user.first_name} {member.user.last_name}
@@ -293,9 +293,42 @@ const ProjectDetails = ({ project }) => {
         </div> 
       )} 
     </div>
-    <div className="md:ml-5 mt-5 p-4 card">
+    <div className="md:ml-5 mt-5 p-4 card max-w-xl">
         <div className="card-header">
-          Project's Statistics
+        <span className="mt-2">
+          Project's Milestones
+          </span>
+        </div>
+        <div className="divider"></div>
+        <div className="card-body">
+        <div className="flex w-full overflow-x-auto">
+	<table className="table-zebra table">
+		<thead>
+			<tr>
+				<th>Type</th>
+				<th>Name</th>
+				<th>Description</th>
+				<th>Date</th>
+			</tr>
+		</thead>
+		<tbody>
+    {projectMilestones && projectMilestones.length > 0 ? (
+      projectMilestones.map((milestones) => {
+        <tr>
+				<th>1</th>
+				<td>{milestones.name}</td>
+				<td>{milestones.description}</td>
+				<td>{milestones.date}</td>
+			</tr>
+      })
+    ):(
+      <p className="font-bold text-xl">No project milestones please</p>
+    )}
+			
+
+		</tbody>
+	</table>
+</div>
         </div>
     </div>
   </div>
