@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Task Assignment</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ffffff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            text-align: center;
+            padding: 30px;
+            border: 2px solid #f26522;
+            border-radius: 10px;
+            background-color: #1e1e1e;
+            color: #ffffff;
+        }
+
+        h1 {
+            color: #f26522;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #f26522;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>New Task Assignment</h1>
+        <p>Hello {{User_Name}},</p>
+        <p>You have been assigned a new task in the project:</p>
+        <ul>
+            <li><strong>Project Name:</strong>{{Project_Name}} </li>
+            <li><strong>Task:</strong> {{Task_title}}</li>
+            <li><strong>Task Description:</strong>{{Task_Description}}</li>
+        </ul>
+        <p>You can start working on the task and collaborate with the team.</p>
+        <a class="button" href="{{Task_link}}">View Task</a>
+    </div>
+</body>
+</html>
