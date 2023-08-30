@@ -43,6 +43,7 @@ def send_email(subject, msg, header, recipient):
 #send_email("Test Subject", "Hello, this is a test message.", "Test Header", recipient_list)
 
 
+#THIS IS THE RENDER TO STRING FOR THE ADDED TO TEAM PROJECT
 def rendering_to_strings(user_name,project_name,project_description,project_link=None):
     email_template = 'added_team.html'
     html_message = render_to_string(email_template,{
@@ -56,7 +57,27 @@ def rendering_to_strings(user_name,project_name,project_description,project_link
 
     return html_message, text_content 
 
+#THIS IS THE EMAIL FOR THE ADDED TO THE TEAM
 def send_added_team_mail(recipient,subject ,user_name,project_name,project_description,project_link):
     with_tags, message  = rendering_to_strings(user_name,project_name,project_description,project_link)
     EmailThread(subject, with_tags, recipient).start()
     return print("team_member_added" )
+
+#THIS IS THE RENDER TO STRING FOR THE TASK ASSIGNED
+def rendering_to_tasks_string(user_name,project_name,task_title,task_description,task_deadline):
+    email_template = 'task_assigned.html'
+    html_message = render_to_string(email_template,{
+        'User_Name':user_name,
+        'Project_Name':project_name,
+        'Task_Title':task_title,
+        'Task_Description':task_description,
+        'Task_Deadline':task_deadline
+    })
+    text_content = strip_tags(html_message)
+
+    return html_message, text_content  
+
+def send_task_assigned_mail(recipient,subject,user_name,project_name,task_title,task_description,task_deadline):
+    with_tags,message = rendering_to_tasks_string(user_name,project_name,task_title,task_description,task_deadline)
+    EmailThread(subject, with_tags, recipient).start()
+    return print('Created task added to this task')

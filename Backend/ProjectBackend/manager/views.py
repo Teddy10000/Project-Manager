@@ -6,7 +6,7 @@ from django.shortcuts import get_object_or_404
 from rest_framework import serializers
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from .mail import send_email,send_added_team_mail
+from .mail import send_email,send_added_team_mail,send_task_assigned_mail
 from django.db import models
 from .serializers import( ProjectCreateSerializer,ProjectDetailSerializer,ProjectListSerializer,
                          ProjectTeamMemberSerializer,ProjectTeamMemberListSerializer,
@@ -203,11 +203,13 @@ class TaskCreateView(generics.CreateAPIView):
         project = self.get_project()
         assigned_user = serializer.validated_data.get('assigned_to') 
         deadline = serializer.validated_data.get('deadline')
+
         name = serializer.validated_data.get('name') 
-        
+        description = serializer.validated_data.get('description')
+
         email = [assigned_user.user.email]
-        message = "A Task of " + name + " has been assigned to you and the deadline is " + str(deadline) + "as a member of " + project.name + "project"
-        send_email('Task Assigned',message,'Task has been assigned',email)
+
+        send_task_assigned_mail(email,"Task has been assigned to you",assigned_user.user.name,project.name,name,description,deadline)
         print(email)
         serializer.save(project=project)
         
