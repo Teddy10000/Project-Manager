@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import api from '../../apis/api-auth';
+import { useParams,useNavigate ,useLocation,Link} from "react-router-dom";
 import { PROJECTS_URL, PROJECT_TASKLIST_URL, TASK_DELETE_URL } from '../../utilities/constant';
 import TaskForm from './TaskForm';
 import Modal from '../modal';
@@ -18,6 +19,7 @@ const TaskManagerScreen = () => {
   const [successMessage,setShowSuccesMessage] = useState(false) 
   const [Added,setAddedSuccess] = useState(false)
   const [individualtask,setIndividualTask] = useState(false)
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const fetchProjects = async () => {
@@ -187,9 +189,10 @@ const TaskManagerScreen = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         
           {taskprojects.map((project) => (
+            <Link to={`/task/${project.project_id}`} key={project.project_id}>
             <div
               key={project.id}
-              onClick={() => handleProjectClick(project.project_id)}
+              
               className={`project-card bg-gradient-to-b from-gray-200 to-gray-500 rounded-lg shadow-md p-6 cursor-pointer hover:bg-gray-100 transition-colors duration-300 ${
                 project.id === selectedProjectId ? 'selected' : 'blurred'
               }`}
@@ -198,6 +201,7 @@ const TaskManagerScreen = () => {
               <p className="text-gray-600">Status: {project.status}</p>
               <progress className="progress progress-flat-success" value={project.completion_rate} max="100"></progress>
             </div>
+            </Link>
           ))}
         </div>
       </div>

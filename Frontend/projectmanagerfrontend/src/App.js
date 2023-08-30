@@ -9,6 +9,7 @@ import ProjectDetails from './constants/Projectdetails';
 import TaskManagerScreen from './constants/Tasks/Tasksection';
 import Sidebar from './constants/Sidebar';
 import WithSidebar from './constants/WithSidebar';
+import Taskdetail from './constants/Tasks/Taskdetail';
 function App() {
   return (
     <>
@@ -21,6 +22,7 @@ function App() {
             <Route exact path="/project" element={<ProjectPage/>}/>
             <Route exact path="/projects/:id" element={<ProjectDetails/>}/>
             <Route exact path="/tasks" element={<TaskManagerScreen/>}/>
+            <Route exact path="/task/:id" element={<Taskdetail/>}/>
           </Routes>
           </WithSidebar>
       </BrowserRouter>
