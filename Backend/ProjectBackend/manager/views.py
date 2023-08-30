@@ -6,6 +6,7 @@ from django.shortcuts import get_object_or_404
 from rest_framework import serializers
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from rest_framework.decorators import api_view
 from .mail import send_email,send_added_team_mail,send_task_assigned_mail
 from django.db import models
 from .serializers import( ProjectCreateSerializer,ProjectDetailSerializer,ProjectListSerializer,
@@ -209,7 +210,7 @@ class TaskCreateView(generics.CreateAPIView):
 
         email = [assigned_user.user.email]
 
-        send_task_assigned_mail(email,"Task has been assigned to you",assigned_user.user.name,project.name,name,description,deadline)
+        send_task_assigned_mail(email,"Task has been assigned to you",assigned_user.user.first_name,project.name,name,description,deadline)
         print(email)
         serializer.save(project=project)
         
@@ -428,4 +429,40 @@ class IssueDestroyView(generics.DestroyAPIView):
     def get_queryset(self):
         # Filter the queryset to only include issues created by the current user
         current_user = self.request.user
-        return Issue.objects.filter(task__assigned_to__user=current_user, created_by=current_user)
+        return Issue.objects.filter(task__assigned_to__user=current_user, created_by=current_user) 
+    
+
+
+@api_view(['GET'])
+def project_list(request):
+    user = request.user  # Assuming you have authentication set up
+    projects =  Project.objects.filter(
+            models.Q(project_manager=user) | models.Q(team_members__user=user)
+        ).distinct()
+
+    project_data = []
+    for project in projects:
+        total_tasks = Task.objects.filter(project=project).count()
+        completed_tasks = Task.objects.filter(project=project, status='completed').count()
+
+        if total_tasks == 0:
+            status = "Not Started"
+        elif completed_tasks == total_tasks:
+            status = "Completed"
+        else:
+            completion_percentage = (completed_tasks / total_tasks) * 100
+            if completion_percentage == 100:
+                status = "Completed"
+            else:
+                status = "In Progress"
+        
+        project_data.append({
+            "project_id": project.id,
+            "project_name": project.name,
+            "status": status,
+            "completed_tasks": completed_tasks,
+            "completion_rate":completion_percentage,
+            "total_tasks": total_tasks,
+        })
+
+    return Response(project_data)

@@ -4,7 +4,7 @@ from .views import (ProjectListView, ProjectDetailView,
                     ProjectTeamCreateView , ProjectTeamAddView,ProjectTeamRemoveView
                     ,TaskListView,TaskUpdateView, TaskCreateView
                     ,ProjectMilestoneCreateView, IssueCreateView, IssueUpdateView, ProjectMilestoneDeleteView, IssueDestroyView,IssueListView,
-                    ProjectMilestoneListView, TaskDeleteView, TaskUserListView,ProjectMilestoneDetailView, ProjectMilestoneUpdateView)
+                    ProjectMilestoneListView, TaskDeleteView, TaskUserListView,ProjectMilestoneDetailView, ProjectMilestoneUpdateView,project_list)
 
 urlpatterns = [
     # For  projects urls , creatinga n updating url, test passed
@@ -34,7 +34,8 @@ urlpatterns = [
     path('projects/<int:project_id>/tasks/<int:task_id>/issues/create/', IssueCreateView.as_view(), name='create_issue'),
     path('issues/<int:pk>/update/', IssueUpdateView.as_view(), name='issue-update'),
     path('issues/<int:pk>/delete/', IssueDestroyView.as_view(), name='issue-delete'),
-    path('projects/<int:project_id>/issues/', IssueListView.as_view(), name='issues')
+    path('projects/<int:project_id>/issues/', IssueListView.as_view(), name='issues') ,
+    path('api/project-list/', project_list, name='project-list')
 ]
     
 
