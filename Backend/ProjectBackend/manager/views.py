@@ -6,7 +6,7 @@ from django.shortcuts import get_object_or_404
 from rest_framework import serializers
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from .mail import send_email
+from .mail import send_email,send_added_team_mail
 from django.db import models
 from .serializers import( ProjectCreateSerializer,ProjectDetailSerializer,ProjectListSerializer,
                          ProjectTeamMemberSerializer,ProjectTeamMemberListSerializer,
@@ -109,15 +109,20 @@ class ProjectTeamCreateView(generics.CreateAPIView):
        
         if project.project_manager == user:
             raise serializers.ValidationError("Project Manager is already a team Member.")
-                
+
+
         # Save the team member instance first
         team_member = serializer.save()
 
         # Then add the project to the team member's projects
-        
+        send_added_team_mail([team_member.user.email],"Added to Project Succesfully",team_member.user.first_name,project.name,project.type,"www.project_manager")
+        print(team_member.user.email)
         
 
-        team_member.projects.add(project)
+        team_member.projects.add(project) 
+
+        #send the email to the team member
+
 
 
         return team_member

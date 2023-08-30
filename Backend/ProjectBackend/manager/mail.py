@@ -41,3 +41,22 @@ def send_email(subject, msg, header, recipient):
 # Example usage
 #recipient_list = ['Akrongkofi@gmail.com']
 #send_email("Test Subject", "Hello, this is a test message.", "Test Header", recipient_list)
+
+
+def rendering_to_strings(user_name,project_name,project_description,project_link=None):
+    email_template = 'added_team.html'
+    html_message = render_to_string(email_template,{
+        'User_Name': user_name,
+        'Project_Name': project_name,
+        'Project_Link': project_link,
+        'Project_Description':project_description
+
+    })
+    text_content = strip_tags(html_message)
+
+    return html_message, text_content 
+
+def send_added_team_mail(recipient,subject ,user_name,project_name,project_description,project_link):
+    with_tags, message  = rendering_to_strings(user_name,project_name,project_description,project_link)
+    EmailThread(subject, with_tags, recipient).start()
+    return print("team_member_added" )
