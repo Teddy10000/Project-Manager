@@ -5,7 +5,7 @@ const ProjectSummary = ({ project }) => {
 
   return (
 
-    <div className="bg-white rounded-md shadow-md p-4 flex flex-col">
+    <div className="bg-gradient-to-b from-gray-200 to-gray-500 rounded-md shadow-md p-4 flex flex-col">
     <h3 className="text-black text-lg font-semibold mb-2">{name}</h3>
     <p className="text-gray-600 mb-2">Status: {status}</p>
     <div className="flex items-center mb-2">

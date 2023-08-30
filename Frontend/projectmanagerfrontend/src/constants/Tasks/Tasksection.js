@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import api from '../../apis/api-auth';
-import { PROJECTS_URL, TASK_DELETE_URL } from '../../utilities/constant';
+import { PROJECTS_URL, PROJECT_TASKLIST_URL, TASK_DELETE_URL } from '../../utilities/constant';
 import TaskForm from './TaskForm';
 import Modal from '../modal';
 
 const TaskManagerScreen = () => {
   const [projects, setProjects] = useState([]);
+  const [taskprojects, setTaskedProjects] = useState([]);
   const [selectedProjectId, setSelectedProjectId] = useState(null);
   const [tasks, setTasks] = useState([]);
   const [showTaskManager, setShowTaskManager] = useState(false); 
@@ -21,17 +22,32 @@ const TaskManagerScreen = () => {
   useEffect(() => {
     const fetchProjects = async () => {
       try {
-        const response = await api.get(`${PROJECTS_URL}`);
-        setProjects(response.data);
+        const [projectresponse,taskprojectresponse] = await Promise.all([
+          api.get(`${PROJECTS_URL}`),
+          api.get(PROJECT_TASKLIST_URL)
+        ])
+        
+        setProjects(projectresponse.data);
+        
+        const accumulatedTaskProjects = [];
+        taskprojectresponse.data.forEach(projectTasks => {
+            accumulatedTaskProjects.push(projectTasks);
+        });
+
+        setTaskedProjects(accumulatedTaskProjects);
+        console.log(accumulatedTaskProjects);
       } catch (error) {
         console.error('Error fetching projects:', error);
       }
     }; 
 
     
-
+   
     fetchProjects();
+    
   }, []);
+
+  
 
   const handleProjectClick = async (projectId) => {
     setSelectedProjectId(projectId); 
@@ -163,18 +179,24 @@ const TaskManagerScreen = () => {
   return (
     <div className="flex flex-col">
       <div className="sm:ml-[290px] bg-gradient-to-b from-slate-500 to-gray-700  h-screen p-4">
-        <h2 className="text-3xl font-bold mb-4 text-white">Manage Tasks Related to Your Projects</h2>
+        <h2 className="text-3xl font-bold mb-4 text-white">Manage Tasks Related to Your Projects
+        
+        </h2> 
+        <div className="divider"></div>
+        
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {projects.map((project) => (
+        
+          {taskprojects.map((project) => (
             <div
               key={project.id}
-              onClick={() => handleProjectClick(project.id)}
-              className={`project-card bg-white rounded-lg shadow-md p-6 cursor-pointer hover:bg-gray-100 transition-colors duration-300 ${
+              onClick={() => handleProjectClick(project.project_id)}
+              className={`project-card bg-gradient-to-b from-gray-200 to-gray-500 rounded-lg shadow-md p-6 cursor-pointer hover:bg-gray-100 transition-colors duration-300 ${
                 project.id === selectedProjectId ? 'selected' : 'blurred'
               }`}
             >
-              <h3 className="text-xl font-semibold mb-2">{project.name}</h3>
+              <h3 className="text-xl font-semibold mb-2">{project.project_name}</h3>
               <p className="text-gray-600">Status: {project.status}</p>
+              <progress className="progress progress-flat-success" value={project.completion_rate} max="100"></progress>
             </div>
           ))}
         </div>

@@ -210,7 +210,7 @@ const ProjectDetails = ({ project }) => {
 
     </div>
     <div className="flex flex-col lg:flex-row gap-5">
-  <div className="card mt-5 max-w-[800px]">
+  <div className="card bg-gradient-to-l from-gray-200 to-gray-500 mt-5 max-w-[800px]">
     <div className="card-body">
       <div className="flex flex-col lg:flex-row lg:items-center gap-24 lg:gap-60">
         <div className="flex flex-col">
@@ -233,9 +233,13 @@ const ProjectDetails = ({ project }) => {
     </div>
   </div>
   {projectdetails && projectdetails.project_manager &&(
-  <div className="card bg-blue-600 mt-5 max-w-[500px]">
+  <div className="card bg-gradient-to-b from-blue-300 to-blue-600 mt-5 max-w-[500px]">
     <div className="card-body">
+    <div className="flex flex-row">
       <h2 className="text-2xl font-semibold mb-2">Project Manager</h2>
+      <span class="dot dot-primary mt-3 ml-4"></span>
+      <span class="dot dot-primary mt-3"></span>
+      </div>
       <div className="border-t border-gray-300 pt-2">
         <p className="text-lg">
           <span className="font-semibold">Name:</span>{" "}
@@ -252,7 +256,7 @@ const ProjectDetails = ({ project }) => {
   
 </div> 
     <div className="flex flex-col md:flex-row ">
-    <div className="mt-5 p-4 card max-w-lg">
+    <div className="mt-5 p-4 card  max-w-lg">
         <div className="card-header">
           Project Team Members
           {projectdetails && projectdetails.team_members.length > 0 && (  <div className="avatar avatar-ring-primary avatar-squared truncate">
