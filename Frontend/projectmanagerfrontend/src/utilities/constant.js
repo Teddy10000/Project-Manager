@@ -5,6 +5,7 @@ export const LOGIN_URL = "http://localhost:8000/account/api/auth/login/"
 export const REFRESH_TOKEN_URL = "http://localhost:8000/account/api/auth/token/refresh/"
 export const PROJECTS_URL = "http://localhost:8000/manager/projects/"
 export const TASK_DELETE_URL = "http://localhost:8000/manager/tasks/"
+export const PROJECT_TASKLIST_URL = "http://localhost:8000/manager/api/project-list/"
 
 export const PROJECT_DETAILS_URL = "http://localhost:8000/manager/projects/"
 export const USERS_LIST_URL = "http://localhost:8000/account/users/"

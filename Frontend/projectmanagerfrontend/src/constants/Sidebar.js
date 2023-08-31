@@ -6,13 +6,14 @@ import MilestonesChart from './Milestones';
 import TasksChart from './Taskschart';
 import ProjectScreen from './Project-list';
 import NewDashboard from './NewDashboard';
-import { Link , NavLink ,useLocation} from 'react-router-dom';
+import { Link , NavLink ,useLocation,useNavigate} from 'react-router-dom';
 import api from '../apis/api-auth';
 import { USER_DETAILED_URL } from '../utilities/constant';
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [user , setUser] = useState('')
-  const location = useLocation();
+  const location = useLocation(); 
+  const navigate = useNavigate();
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
 
@@ -35,8 +36,9 @@ const avatarUrl = generateRandomAvatarUrl()
 			setUser(response.data)
 		  }
 		}
-		catch(err){
-			throw new Error('Please login')
+		catch(err){ 
+			navigate('/login')
+			
 		}
 	};
 	fetchUserInfo();

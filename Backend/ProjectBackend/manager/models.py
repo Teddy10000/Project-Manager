@@ -14,7 +14,8 @@ from django.dispatch import receiver
 class Project(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=255)
-    start_date = models.DateTimeField(blank=False, null=False , default=None)
+    start_date = models.DateTimeField(blank=False, null=False , default=None) 
+    type = models.CharField(max_length=50, default=None) 
     choice = (
        ('completed',('completed')),
         ('not completed',('not completed')),

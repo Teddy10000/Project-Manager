@@ -71,7 +71,7 @@ const handleSubmit = (e) => {
         console.log()
       
         // Redirect the user to the dashboard or some other page
-       // navigate('/dashboard');
+       navigate('/dashboard');
       })
       .catch(error => {
         // Handle the error

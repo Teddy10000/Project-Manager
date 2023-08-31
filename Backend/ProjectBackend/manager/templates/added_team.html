@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Project Notification</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ffffff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            text-align: center;
+            padding: 30px;
+            border: 2px solid #f26522;
+            border-radius: 10px;
+            background-color: #1e1e1e;
+            color: #ffffff;
+        }
+
+        h1 {
+            color: #f26522;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #f26522;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>New Project Notification</h1>
+        <p>Hello {{User_Name}},</p>
+        <p>You have been added to a new project. We are excited to have you on board!</p>
+        <p>Project Details:</p>
+        <ul>
+            <li><strong>Project Name:</strong> {{Project_Name}}</li>
+            <li><strong>Project Description:</strong> {{Project_Description}}</li>
+        </ul>
+        <p>You can now collaborate with the team on this exciting project.</p>
+        <a class="button" href="{{Project_Link}}">View Project</a>
+    </div>
+</body>
+</html>
