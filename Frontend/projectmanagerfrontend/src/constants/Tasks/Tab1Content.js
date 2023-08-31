@@ -1,8 +1,10 @@
 import React from 'react'
 
-const Tab1Content = () => {
+const Tab1Content = ({projects}) => {
   return (
-    <div>Tab1Content</div>
+    <div className="p-4">
+        Tab1Content
+    </div>
   )
 }
 

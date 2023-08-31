@@ -139,7 +139,18 @@ const ProjectDetails = ({ project }) => {
   //UPDATE PROJECT MILESTONE FORM
   const handleUpdateFormClose = () => {
     setShowUpdateForm(false);
-  }; 
+  };  
+
+
+  const handleRemoveTeamMember = async(memberid) => {
+     try{
+      await api.post(`projects/${id}/team/remove/${memberid}`)
+     }
+     catch (error) {
+      console.error('Error deleting team member:', error);
+    }
+
+  }
 
   //FUNCTION TP DELETE PROJECT MILESTONE 
   const handleDeleteClick = async (milestoneId) => {
@@ -271,6 +282,9 @@ const ProjectDetails = ({ project }) => {
       <p className="mt-2 text-xl font-semibold">
         {member.user.first_name} {member.user.last_name}
       </p>
+      <button className="btn btn-error w-40 hover:bg-red-800" onClick={() => handleRemoveTeamMember(member.id)}>
+          Remove Team Member
+      </button>
       <div className="ml-4 avatar avatar-online">
         <img src="https://i.pravatar.cc/150?u=a042581f4e29026024d" alt="avatar" />
       </div>

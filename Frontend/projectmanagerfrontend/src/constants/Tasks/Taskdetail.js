@@ -10,7 +10,8 @@ import TaskForm from './TaskForm';
 import Tab1Content from './Tab1Content'; // Import your tab content components
 import Tab2Content from './Tab2Content';
 import Tab3Content from './Tab3Content';
-
+import { BsListTask } from "react-icons/bs"; 
+import { MdTaskAlt } from "react-icons/md";
 
 const Taskdetail = () => {
   const [tasklist, setTaskList] = useState([]);
@@ -57,7 +58,7 @@ const Taskdetail = () => {
            <span className="badge text-lg w-40 badge-outline-success">{projects.status}</span>
           
         </div>
-        <p className="font-bold w-40 ml-56 p-1 md:p-0 md:ml-4 mt-[-52px] md:mt-0 text-xl md:self-center bg-gray-400">Total Tasks: {tasklist.length + 1}</p> 
+        <p className="font-bold w-40 ml-56 p-1 md:p-0 md:ml-4 mt-[-52px] md:mt-0 text-xl md:self-center bg-gray-400">Total Tasks: {tasklist.length}</p> 
        
         <div className="">
         <div className=" py-8">
@@ -71,8 +72,8 @@ const Taskdetail = () => {
             checked={activeTab === 0}
             onChange={() => handleTabClick(0)}
           />
-          <label htmlFor="tab-1" className={`tab w-1/3 text-xl tab-bordered px-6 cursor-pointer ${activeTab === 0 ? 'text-blue-600 border-b-2 border-blue-600' : ''}`}>
-            Tab 1
+          <label htmlFor="tab-1" className={`tab w-1/3 md:text-xl  tab-bordered px-6 cursor-pointer ${activeTab === 0 ? 'text-blue-600 border-b-2 border-blue-600' : ''}`}>
+             Task Issued <MdTaskAlt className='text-xl ml-1 mt-[2px]'/>
           </label>
 
           <input
@@ -83,8 +84,8 @@ const Taskdetail = () => {
             checked={activeTab === 1}
             onChange={() => handleTabClick(1)}
           />
-          <label htmlFor="tab-2" className={`tab w-1/3 text-xl tab-bordered px-6 cursor-pointer ${activeTab === 1 ? 'text-blue-600 border-b-2 border-blue-600' : ''}`}>
-            Tab 2
+          <label htmlFor="tab-2" className={`tab w-1/3 md:text-xl tab-bordered px-6 cursor-pointer ${activeTab === 1 ? 'text-blue-600 border-b-2 border-blue-600' : ''}`}>
+            Manage  Issues
           </label>
 
           <input
@@ -95,8 +96,8 @@ const Taskdetail = () => {
             checked={activeTab === 2}
             onChange={() => handleTabClick(2)}
           />
-          <label htmlFor="tab-3" className={`tab w-1/3 text-xl tab-bordered px-6 cursor-pointer ${activeTab === 2 ? 'text-blue-600 border-b-2 border-blue-600' : ''}`}>
-            Tab 3
+          <label htmlFor="tab-3" className={`tab w-1/3 md:text-xl md:mt-[-2px] tab-bordered px-6 cursor-pointer ${activeTab === 2 ? 'text-blue-600 border-b-2 border-blue-600' : ''}`}>
+              Manage my Tasks <BsListTask className='text-xl md:text-3xl ml-2 mt-[1px]'/>
           </label>
         </div>
 
