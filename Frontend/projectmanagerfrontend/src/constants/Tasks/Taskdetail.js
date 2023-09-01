@@ -152,7 +152,7 @@ const Taskdetail = () => {
 
         <div className="mt-4">
           <div className="tab-content">
-            {activeTab === 0 && <Tab1Content handleTaskSubmit={handleTaskSubmit} teamMembers={teamMembers} showModal={showModal} closeModal={closeModal} modalMessage={modalMessage} Added={Added}/>}
+            {activeTab === 0 && <Tab1Content Tasklist={tasklist} handleTaskSubmit={handleTaskSubmit} teamMembers={teamMembers} showModal={showModal} closeModal={closeModal} modalMessage={modalMessage} Added={Added}/>}
             {activeTab === 1 && <Tab2Content />}
             {activeTab === 2 && <Tab3Content />}
           </div>

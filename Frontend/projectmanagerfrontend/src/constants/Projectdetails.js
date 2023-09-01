@@ -266,7 +266,7 @@ const ProjectDetails = ({ project }) => {
   )} 
   
 </div> 
-    <div className="flex flex-col md:flex-row ">
+    <div className="flex flex-col lg:flex-row ">
     <div className="mt-5 p-4 card  max-w-lg">
         <div className="card-header">
           Project Team Members

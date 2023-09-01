@@ -4,7 +4,7 @@ import Modal from '../modal';
 import { MdOutlineAddTask } from "react-icons/md";
 
 
-const Tab1Content = ({projects , teamMembers, handleTaskSubmit ,showModal,closeModal,modalMessage,Added}) => {
+const Tab1Content = ({projects , TaskList ,teamMembers, handleTaskSubmit ,showModal,closeModal,modalMessage,Added}) => {
   const [showForm,setShowForm] = useState(false)
   const handleShowForm = () =>{
      setShowForm(true);
@@ -13,11 +13,15 @@ const Tab1Content = ({projects , teamMembers, handleTaskSubmit ,showModal,closeM
   const handleClose = ()=>{
     setShowForm(false);
 } 
+
+console.log(TaskList)
+
   return (
     <div className="p-4 ml-10 sm:ml-0">
         <div className="flex md:flex-row gap-1 md:gap-3 flex-col">
           <div className="flex  flex-col w-full md:w-1/3">
               <p className="font-bold text-xl "> Pending Task <span className="badge w-5 h-5 badge-primary">5</span></p> 
+              
               <div className="card mt-2 bg-gradient-to-br from-white to-blue-500">
                 <p className='card-header p-3 ml-5 text-lg md:text-xl font-semibold'> Task Name <div className="flex flex-col">
                 <span className="dot"></span>
