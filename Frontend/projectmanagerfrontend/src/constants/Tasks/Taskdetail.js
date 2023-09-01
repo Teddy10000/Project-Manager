@@ -49,7 +49,7 @@ const Taskdetail = () => {
         setProject(Projectsresponse.data);
         setTeamMembers(Projectsresponse.data.team_members); 
     
-        console.log(Projectsresponse.data.team_members)
+        console.log(tasklist)
       } catch (error) {
         console.error('Error fetching projects:', error);
       }
@@ -152,7 +152,7 @@ const Taskdetail = () => {
 
         <div className="mt-4">
           <div className="tab-content">
-            {activeTab === 0 && <Tab1Content Tasklist={tasklist} handleTaskSubmit={handleTaskSubmit} teamMembers={teamMembers} showModal={showModal} closeModal={closeModal} modalMessage={modalMessage} Added={Added}/>}
+            {activeTab === 0 && <Tab1Content tasklist={tasklist} handleTaskSubmit={handleTaskSubmit} teamMembers={teamMembers} showModal={showModal} closeModal={closeModal} modalMessage={modalMessage} Added={Added}/>}
             {activeTab === 1 && <Tab2Content />}
             {activeTab === 2 && <Tab3Content />}
           </div>
