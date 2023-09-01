@@ -30,7 +30,7 @@ const TaskForm = ({ teamMembers, handleTaskSubmit,handleClose }) => {
   };
 
   return (
-    <div className="bg-white container mx-auto rounded-lg shadow-md p-6">
+    <div className="bg-white container md:w-1/2 mx-auto rounded-lg shadow-md p-6">
     <h2 className="text-2xl font-bold mb-4">Add New Task</h2>
     <form onSubmit={handleSubmit} className="space-y-4">
       <div className="flex flex-col">

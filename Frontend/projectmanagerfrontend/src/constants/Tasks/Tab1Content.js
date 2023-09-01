@@ -1,6 +1,18 @@
-import React from 'react'
+import React,{useState} from 'react' 
+import TaskForm from '../Tasks/TaskForm';
+import Modal from '../modal';
+import { MdOutlineAddTask } from "react-icons/md";
 
-const Tab1Content = ({projects}) => {
+
+const Tab1Content = ({projects , teamMembers, handleTaskSubmit ,showModal,closeModal,modalMessage,Added}) => {
+  const [showForm,setShowForm] = useState(false)
+  const handleShowForm = () =>{
+     setShowForm(true);
+  }
+  
+  const handleClose = ()=>{
+    setShowForm(false);
+} 
   return (
     <div className="p-4 ml-10 sm:ml-0">
         <div className="flex md:flex-row gap-1 md:gap-3 flex-col">
@@ -81,8 +93,16 @@ const Tab1Content = ({projects}) => {
                 
 
               </div>
-          </div>
+          </div> 
+          
         </div>
+        <span class="tooltip tooltip-top tooltip-success" data-tooltip="click to assign new task">
+        <button onClick={handleShowForm} className="mx-auto mt-20 hover:scale-105 flex justify-center self-center text-4xl">
+            <MdOutlineAddTask/>
+        </button>
+        {showForm && <TaskForm handleClose ={handleClose} handleTaskSubmit={handleTaskSubmit} teamMembers={teamMembers}/>}
+        <Modal showModal={showModal} closeModal={closeModal} modalMessage={modalMessage} success={Added} />
+        </span>
     </div>
   )
 }

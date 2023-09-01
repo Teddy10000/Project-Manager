@@ -25,14 +25,18 @@ const Taskdetail = () => {
   const [successMessage,setShowSuccesMessage] = useState(false) 
   const [Added,setAddedSuccess] = useState(false)
   const [individualtask,setIndividualTask] = useState(false)
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(false); 
+  const [teamMember , setTeamMember] = useState([])
   const { id } = useParams();
   
   const [activeTab, setActiveTab] = useState(0);
   const handleTabClick = (tabIndex) => {
       setActiveTab(tabIndex);
     };
-
+  
+  const closeModal = () => {
+      setShowModal(false)
+   }
   useEffect(() => {
     const fetchTaskDetails = async () => {
       try {
@@ -43,6 +47,9 @@ const Taskdetail = () => {
   
         setTaskList(TaskListresponse.data);
         setProject(Projectsresponse.data);
+        setTeamMembers(Projectsresponse.data.team_members); 
+    
+        console.log(Projectsresponse.data.team_members)
       } catch (error) {
         console.error('Error fetching projects:', error);
       }
@@ -50,6 +57,48 @@ const Taskdetail = () => {
   
     fetchTaskDetails();
   }, [id]);
+  const handleTaskSubmit = async(newTask) =>{
+    try{
+      // Get the current project's ID
+       
+      // Send POST request to the backend team create endpoint with the project ID in the URL
+    const response = await api.post(`${PROJECTS_URL}${id}/tasks/create/`,newTask); 
+    
+      if (response.data){ 
+        setTaskList((prevTasks) => [...prevTasks, response.data]);
+        setShowModal(true)
+        setShowSuccesMessage(true);
+        setModalMessage('Task Assigned to member successfully');
+        setAddedSuccess(true)
+      };
+   
+    } 
+    catch (error) {
+      if (error.response) {
+        const errorData = error.response.data;
+        let errorts = [];
+        for (let key in errorData) {
+          if (Array.isArray(errorData[key])) {
+            errorts.push(...errorData[key].map((errorMessage) => {
+              return `${key.charAt(0).toUpperCase() + key.slice(1).replace('_', ' ')}: ${errorMessage}\t`;
+            }));
+          } else {
+            errorts.push(`${key.charAt(0).toUpperCase() + key.slice(1).replace('_', ' ')}: ${errorData[key]}\t`);
+          }
+        }
+       
+        setModalMessage(errorts)
+        setShowModal(true)
+        setAddedSuccess(false)
+      } else {
+        
+        setModalMessage(["Something went wrong. Please try again later."]);
+        setShowModal(true)
+        setAddedSuccess(false)
+      }
+    }; } 
+
+  
   return (
     <>
       <div className="flex flex-col sm:ml-[290px]">
@@ -103,7 +152,7 @@ const Taskdetail = () => {
 
         <div className="mt-4">
           <div className="tab-content">
-            {activeTab === 0 && <Tab1Content  />}
+            {activeTab === 0 && <Tab1Content handleTaskSubmit={handleTaskSubmit} teamMembers={teamMembers} showModal={showModal} closeModal={closeModal} modalMessage={modalMessage} Added={Added}/>}
             {activeTab === 1 && <Tab2Content />}
             {activeTab === 2 && <Tab3Content />}
           </div>
